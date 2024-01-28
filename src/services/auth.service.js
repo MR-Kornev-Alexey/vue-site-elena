@@ -33,6 +33,16 @@ class AuthService {
       })
   }
 
+  star3SendingLetter (data) {
+    return axios
+      .post(API_URL + 'star3SendingLetter', {
+        user: data
+      })
+      .then(response => {
+        return response.data
+      })
+  }
+
   changeOneAccess (data) {
     return axios
       .post(API_URL + 'changeOneAccess', {
@@ -143,6 +153,16 @@ class AuthService {
       })
   }
 
+  changeTimes (user) {
+    return axios
+      .post(API_URL + 'changeTimes', {
+        user: user
+      })
+      .then(response => {
+        return response.data
+      })
+  }
+
   changeEndOfSendHW (user) {
     return axios
       .post(API_URL + 'changeEndOfSendHW', {
@@ -197,9 +217,48 @@ class AuthService {
       })
   }
 
+  getAllUsersEmoCourse3 (user) {
+    return axios
+      .post(API_URL + 'getAllUsersEmoCourse3', {
+        user: user
+      })
+      .then(response => {
+        // if (response.data) {
+        //   localStorage.setItem('telegramUser', JSON.stringify(response.data))
+        // }
+        return response.data
+      })
+  }
+
   getAllUsersSpeakCourse (user) {
     return axios
       .post(API_URL + 'getAllUsersSpeakCourse', {
+        user: user
+      })
+      .then(response => {
+        // if (response.data) {
+        //   localStorage.setItem('telegramUser', JSON.stringify(response.data))
+        // }
+        return response.data
+      })
+  }
+
+  allUsersMotherHoodFromApi (user) {
+    return axios
+      .post(API_URL + 'allUsersMotherHoodFromApi', {
+        user: user
+      })
+      .then(response => {
+        // if (response.data) {
+        //   localStorage.setItem('telegramUser', JSON.stringify(response.data))
+        // }
+        return response.data
+      })
+  }
+
+  changeAccessToOneUserEmo3 (user) {
+    return axios
+      .post(API_URL + 'changeAccessToOneUserEmo3', {
         user: user
       })
       .then(response => {
@@ -236,6 +295,19 @@ class AuthService {
       })
   }
 
+  sendAllEmo3UsersNoSpam (user) {
+    return axios
+      .post(API_URL + 'sendAllEmo3UsersNoSpam', {
+        user: user
+      })
+      .then(response => {
+        // if (response.data) {
+        //   localStorage.setItem('telegramUser', JSON.stringify(response.data))
+        // }
+        return response.data
+      })
+  }
+
   sendAllSpeaksUsersNoSpam (user) {
     return axios
       .post(API_URL + 'sendAllSpeaksUsersNoSpam', {
@@ -262,6 +334,32 @@ class AuthService {
       })
   }
 
+  addUsersToListEmo3 (user) {
+    return axios
+      .post(API_URL + 'addUsersToListEmo3', {
+        user: user
+      })
+      .then(response => {
+        // if (response.data) {
+        //   localStorage.setItem('telegramUser', JSON.stringify(response.data))
+        // }
+        return response.data
+      })
+  }
+
+  convertUsersToEmo3 (user) {
+    return axios
+      .post(API_URL + 'convertUsersToEmo3', {
+        user: user
+      })
+      .then(response => {
+        // if (response.data) {
+        //   localStorage.setItem('telegramUser', JSON.stringify(response.data))
+        // }
+        return response.data
+      })
+  }
+
   convertUsersToSpeak (user) {
     return axios
       .post(API_URL + 'convertUsersToSpeak', {
@@ -271,6 +369,16 @@ class AuthService {
         // if (response.data) {
         //   localStorage.setItem('telegramUser', JSON.stringify(response.data))
         // }
+        return response.data
+      })
+  }
+
+  checkEmailRegisterOnApi (user) {
+    return axios
+      .post(API_URL + 'checkEmailRegisterOnApi', {
+        user: user
+      })
+      .then(response => {
         return response.data
       })
   }
@@ -297,6 +405,26 @@ class AuthService {
         // if (response.data) {
         //   localStorage.setItem('telegramUser', JSON.stringify(response.data))
         // }
+        return response.data
+      })
+  }
+
+  star3Telegram (user) {
+    return axios
+      .post(API_URL + 'signingGetStar3Telegram', {
+        user: user
+      })
+      .then(response => {
+        return response.data
+      })
+  }
+
+  star1Telegram (user) {
+    return axios
+      .post(API_URL + 'signingGetStar1Telegram', {
+        user: user
+      })
+      .then(response => {
         return response.data
       })
   }
@@ -401,6 +529,10 @@ class AuthService {
 
   botRegisterBabyName (data) {
     return axios.post(API_URL + 'botRegisterBabyName', data)
+  }
+
+  botRegisterUserName (data) {
+    return axios.post(API_URL + 'botRegisterUserName', data)
   }
 
   botRegisterName (data) {

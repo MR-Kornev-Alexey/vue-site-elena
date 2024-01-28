@@ -44,6 +44,28 @@
       </v-col>
     </v-row>
     <commonStartTest @startTestPsy="startTest"/>
+    <v-dialog
+      v-model="showHelp"
+      width="auto"
+    >
+      <v-card>
+        <v-card-text class="d-flex justify-center text-center">
+          <p v-html="textHelp"></p>
+        </v-card-text>
+
+        <v-card-text class="d-flex justify-center text-center">
+          <p>Если необходима коррекция, то прошу вас выбрать иконку
+            <svg-icon class="svgIcon" type="mdi" :path="baby" size="28px"></svg-icon>
+            справа вверху и ввести вес ребенка в настоящее время.
+          </p>
+        </v-card-text>
+        <div class="form-group text-center my-4">
+          <button class="btn btn-rec-green" @click="weightRight">
+            закрыть
+          </button>
+        </div>
+      </v-card>
+    </v-dialog>
   <Footer :class="footerClass"/>
   </div>
 </template>
@@ -71,7 +93,9 @@ export default {
     weightNowBaby: null,
     showWeight: false,
     showGrowth: false,
-    baby: mdiBaby
+    baby: mdiBaby,
+    showHelp: false,
+    textHelp: null
   }),
   computed: {
     genderFromApi () {
@@ -101,7 +125,7 @@ export default {
   methods: {
     startTest (index) {
       this.$store.dispatch('allTest/getMonthOfPsychophysical', ['psycho', index, []])
-      this.$router.push('/moveTestSecond')
+      this.$router.push('/psychophysicalTestSecond')
     },
     checkScreenWidth () {
       if (window.innerWidth <= 480) {
@@ -116,27 +140,51 @@ export default {
         null,
         this.genderFromApi,
         this.currentMonth,
-        null,
+        this.dataOfTableUser.weight_now,
         null
       ).checkWeight()
       return mainResult
-    // const realData = Number(this.valueWeight / 1000)
-    //   if (realData < Number(mainResult[0])) {
-    //     return 'less'
-    //     // return 'Вы ввели вес ребенка ' + this.valueWeight + ' грамм.<br> Это значение ниже нормы для выбранного возраста.<br> Проверьте правильность введенных данных'
-    //   }
-    //   if (realData > Number(mainResult[8])) {
-    //     return 'more'
-    //   }
-    //   return 'normal'
+    },
+    checkGrowthTable () {
+      return new MainCheck(
+        null,
+        null,
+        this.genderFromApi,
+        this.currentMonth,
+        null,
+        null
+      ).checkGrowth()
+    },
+    weightRight () {
+      this.showHelp = false
+      this.showWeight = this.dataOfTableUser.weight_now !== null
     },
     checkWeight () {
-      const result = this.checkWeightTable()
-      alert(result)
       this.showWeight = this.dataOfTableUser.weight_now !== null
+      const result = this.checkWeightTable()
+      // alert(result)
+      if (this.dataOfTableUser.weight_now < +result[0] * 1000) {
+        // alert(result[0])
+        this.textHelp = 'Введенный Вами вес ребенка в настоящее время ниже нормы для ребенка вашего возраста.'
+        this.showHelp = true
+      } else if (this.dataOfTableUser.weight_now > +result[8] * 1000) {
+        this.textHelp = 'Введенный Вами вес ребенка в настоящее время выше нормы для ребенка вашего возраста.'
+        this.showHelp = true
+      }
     },
     checkGrowth () {
       this.showGrowth = this.dataOfTableUser.growth_now !== null
+      const result = this.checkGrowthTable()
+      // alert(result)
+      if (this.dataOfTableUser.growth_now < +result[0]) {
+        // alert(result[0])
+        this.textHelp = 'Введенный Вами рост ребенка в настоящее время ниже нормы для ребенка вашего возраста'
+        this.showHelp = true
+      } else if (this.dataOfTableUser.growth_now > +result[8]) {
+        this.textHelp = 'Введенный Вами рост ребенка в настоящее время выше нормы для ребенка вашего возраста'
+        this.showHelp = true
+        // alert(result[8])
+      }
     }
   },
   mounted () {
@@ -155,6 +203,32 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+.btn-rec-green {
+  width: 220px;
+  background-color: #156434;
+  color: whitesmoke;
+  border-radius: 16px;
+  padding: 7px;
+  text-transform: uppercase;
+  font-size: 14px;
+
+.v-btn__content {
+  color: whitesmoke
+}
+}
+.btn-rec-orange {
+  width: 220px;
+  background-color: #ff7835;
+  color: #2F3550;
+  border-radius: 16px;
+  padding: 7px ;
+  text-transform: uppercase;
+  font-size: 14px;
+  .v-btn__content {
+    color: whitesmoke
+  }
+  margin-bottom: 12px;
+}
 
 </style>

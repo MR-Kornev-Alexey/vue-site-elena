@@ -30,7 +30,7 @@
               <div class="sub-title">
                 <div class="element-subtitle">
                   <svg-icon type="mdi" :path="check" size="20"></svg-icon>
-                  Педиатр, семейный психолог, спикер, блогер
+                  Педиатр, семейный психолог, эксперт по развитию детей
                 </div>
                 <div class="element-subtitle">
                   <svg-icon type="mdi" :path="check" size="20"></svg-icon>
@@ -58,7 +58,7 @@
         <div class="round-6"/>
       </v-col>
     </v-row>
-    <v-row class="row-light d-flex justify-center text-center mt-4">
+    <v-row class="row-light d-flex justify-center text-center ">
       <v-col
         cols="11"
         md="auto"
@@ -68,8 +68,33 @@
       </v-col>
     </v-row>
     <Courses/>
-    <courseSlider />
+<!--    <courseSlider />-->
+<!--    <v-row class="d-flex justify-center text-center" style="background-color: #b6d0ff">-->
+<!--      <v-col-->
+<!--        cols="11"-->
+<!--        md="auto"-->
+<!--        class="justify-center d-flex text-center" style="flex-direction: column"-->
+<!--      >-->
+<!--        <h2 class="h2-title-home" style="color: #304672">Как вырастить яркую личность</h2>-->
+<!--        <v-img-->
+<!--          aspect-ratio="16/9"-->
+<!--          cover-->
+<!--          src="@/assets/img/motherhood-1080.png"-->
+<!--         class="banner-img"></v-img>-->
+<!--       <v-img href="@/assets/img/motherhood-1080.png" alt="banner" width="600px" />-->
+
+<!--        <p class="text-common mt-4" style="color: #304672">-->
+<!--          бесплатный стартовый курс по материнству от Елены Корневой-->
+<!--        </p>-->
+<!--        <div class="my-4">-->
+<!--          <a href="https://t.me/HelenEventBot?start=start" class="a-btn"><v-btn class="btn-advice mt-4">-->
+<!--            Открыть-->
+<!--          </v-btn></a>-->
+<!--        </div>-->
+<!--      </v-col>-->
+<!--    </v-row>-->
     <Advice/>
+<!--    <MobileBanner @click="goToBF"/>-->
 <!--    <FiveOfReasons/>-->
     <Footer/>
   </v-container>
@@ -81,8 +106,9 @@ import Advice from './Advice'
 // import FiveOfReasons from '@/views/fiveOfReasons'
 import Footer from './Footer'
 import SvgIcon from '@jamescoyle/vue-icon'
-import { mdiStarCheckOutline, mdiArrowDownThick } from '@mdi/js'
-import courseSlider from '../common/coursesSlider'
+import { mdiStarCheckOutline, mdiArrowDownThick, mdiCurrencyRub } from '@mdi/js'
+// import MobileBanner from '../banner/banner'
+// import courseSlider from '../common/coursesSlider'
 
 export default {
   name: 'v-home',
@@ -91,8 +117,7 @@ export default {
     Advice,
     Footer,
     // FiveOfReasons,
-    SvgIcon,
-    courseSlider
+    SvgIcon
   },
   data () {
     return {
@@ -101,6 +126,7 @@ export default {
       check: mdiStarCheckOutline,
       left: mdiArrowDownThick,
       right: mdiArrowDownThick,
+      rub: mdiCurrencyRub,
       select: {
         state: 'от 4 до 10 месяцев️',
         abbr: '1'
@@ -129,6 +155,9 @@ export default {
   methods: {
     handleChange (index) {
       this.$store.dispatch('auth/changePeriod', index.abbr)
+    },
+    goToBF () {
+      this.$router.push('#blackFriday')
     }
   },
   computed: {
@@ -142,7 +171,15 @@ export default {
 .main-home {
   background-color: #ead7c8;
 }
-
+.banner-img {
+  width: 900px;
+  -webkit-box-shadow: -11px 8px 3px -1px rgba(0,0,0,0.17);
+  -moz-box-shadow: -11px 8px 3px -1px rgba(0,0,0,0.17);
+  box-shadow: -11px 8px 3px -1px rgba(0,0,0,0.17);
+}
+.banner-bf {
+  width: 500px;
+}
 .col-hero {
   padding: 0;
   margin: 0;
@@ -182,7 +219,7 @@ export default {
 
 .first-one {
   min-height: 640px;
-  background-image: url('@/assets/img/lena-super-main.png');
+  background-image: url('@/assets/img/lena-avatar-jeans.png');
   background-position: center bottom;
   background-size: 76%;
   position: relative;

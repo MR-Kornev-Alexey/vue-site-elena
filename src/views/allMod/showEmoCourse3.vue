@@ -3,13 +3,26 @@
     <div class="profile-mod">
       <v-row class="justify-center d-flex">
         <v-col cols="11" class="d-flex justify-center flex-column text-center" >
-          <h4 class="title-user">
-           Курс по эмоциональному развитию 1.0
+          <h4 class="title-user mx-auto">
+           Курс по эмоциональному развитию 3.0
           </h4>
-        <v-btn  class="btn-dream-back mx-auto" @click="convertUsersToList()">
-          Конвертировать
-        </v-btn>
        </v-col>
+      </v-row>
+      <v-row class="justify-center d-flex">
+        <v-col cols="11" class="d-flex justify-center flex-column text-center" >
+      <v-btn
+        class="btn-dream-back  mx-auto" @click="convertUsersToList()"
+      >Конвертировать для рассылки
+      </v-btn>
+        </v-col>
+      </v-row>
+      <v-row class="justify-center d-flex">
+        <v-col cols="11" class="d-flex justify-center flex-column text-center" >
+          <v-btn
+            class="btn-dream-back  mx-auto" @click="addUsersToList()"
+          >Добавить нового участника
+          </v-btn>
+        </v-col>
       </v-row>
       <v-row justify="center">
       <v-col cols="auto">
@@ -21,7 +34,7 @@
               <v-btn
                 class="btn-dream-back "
                 v-bind="props"
-              >Отправить сообшение</v-btn>
+              >Отправить сообшение всем</v-btn>
             </template>
             <template v-slot:default="{ isActive }">
               <v-card>
@@ -59,76 +72,55 @@
           </v-dialog>
         </v-col>
       </v-row>
-      <v-row class="justify-center d-flex">
-        <v-col cols="12"  class="justify-center d-flex" style="flex-direction: column">
-          <div class="d-inline-flex all-size-font justify-center" style="width: 100%; margin: auto">
+      <v-row class="justify-center d-flex mt-6">
+        <v-col cols="12"  class="justify-center d-flex" style="flex-direction: column; padding: 0; margin: 0" >
+          <div class="d-inline-flex all-size-font justify-center">
             <div class="size-5-left">
               №№
             </div>
-            <div class="size-12">
+            <div class="size-20-name " >
               Имя пользователя
             </div>
-            <div class="size-15">
+            <div class="size-15" >
               Email
             </div>
-            <div class="size-10-bd" >
+            <div class="size-15">
               chatId
             </div>
-            <div class="size-5" >
-             Статус
-            </div>
-            <div class="size-12">
-              Дата старта
-            </div>
-            <div class="size-10">
-              Текущий день
+            <div class="size-5">
+               день
             </div>
             <div class="size-5" >
-              статус
-            </div>
-            <div class="size-5" >
-             старт
+             старт/стоп
             </div>
           </div>
         </v-col>
       </v-row>
-      <div v-for="(item, key) in allEmoUsers" :key="key" >
-        <v-row class="justify-center d-flex">
-          <v-col cols="12"  class="justify-center d-flex" style="flex-direction: column">
-            <div class="d-inline-flex all-size-font justify-center" style="width: 100%; margin: auto" >
-              <div class="size-5-left pointer" :class="colorLight(key)" @click="openDialog(item.chatId)">
-                {{key+1}}
-              </div>
-              <div class="size-12 pointer"  :class="colorLight(key)" @click="openDialog(item.chatId)">
-                {{item.real_name_telegram }}
-              </div>
-              <div class="size-15 pointer" :class="colorLight(key)" @click="openDialog(item.chatId)" style="font-size: 12px" >
-                {{item.email_telegram }}
-              </div>
-              <div class="size-10-bd pointer" :class="colorLight(key)" @click="openDialog(item.chatId)">
-                {{item.chatId}}
-              </div>
-              <div class="size-5 pointer" :class="colorLight(key)" @click="openDialog(item.chatId)">
-                <div  style="color: darkgreen; font-size: 12px" v-if="item.send">открыт </div>
-                <div style="color: #b93151; font-size: 12px" v-if="!item.send">закрыт </div>
-              </div>
-              <div class="size-12 pointer" :class="colorLight(key)" @click="openDialog(item.chatId)">
-                {{item.registrationDate}}
-              </div>
-              <div class="size-10 pointer"  :class="colorLight(key)" @click="openDialog(item.chatId)">
-                {{item.index_send}}
-              </div>
-              <div class="size-5 pointer" :class="colorLight(key)" @click="changeAccess(item.email )">
-                <svg-icon type="mdi" :path="open"  style="color: darkgreen" v-if="item.send"></svg-icon>
-                <svg-icon type="mdi" :path="close"  style="color: #b93151" v-if="!item.send"></svg-icon>
-              </div>
-              <div class="size-5 pointer" :class="colorLight(key)" @click="startCourse(item.chatId)">
-                <svg-icon type="mdi" :path="start"></svg-icon>
-              </div>
+      <v-row class="justify-center d-flex ">
+        <v-col cols="12"  class="justify-center  d-flex" style="flex-direction: column; padding: 0; margin: 0" v-for="(item, key) in allEmoUsers" :key="key">
+          <div class="d-inline-flex all-size-font justify-center" >
+            <div class="size-5-left" :class="colorLight(key)">
+            {{key + 1}}
             </div>
-          </v-col>
-        </v-row>
-      </div>
+            <div class="size-20-name" :class="colorLight(key)">
+              {{item.first_name_telegram }} /{{item.real_name_telegram }}
+            </div>
+            <div class="size-15" :class="colorLight(key)">
+              {{item.email_telegram }}
+            </div>
+            <div class="size-15" :class="colorLight(key)">
+              {{item.chatId}}
+            </div>
+            <div class="size-5 " :class="colorLight(key)" style="text-align: center">
+              {{item.index_send}}
+            </div>
+            <div class="size-5" :class="colorLight(key)" @click="changeAccess(item.email_telegram)" >
+                <svg-icon type="mdi" :path="open"  style="color: darkgreen" v-if="item.send_3"></svg-icon>
+                <svg-icon type="mdi" :path="close"  style="color: #b93151" v-if="!item.send_3"></svg-icon>
+            </div>
+          </div>
+        </v-col>
+      </v-row>
       <div class="text-center">
         <v-dialog
           v-model="dialog"
@@ -195,7 +187,7 @@ export default {
         this.message = 'чего-то надо написать'
       } else {
         const data = { admin: this.currentUser, msg: this.messageArea }
-        this.$store.dispatch('auth/sendAllSpeaksUsers', data).then(
+        this.$store.dispatch('auth/sendAllEmo3Users', data).then(
           (res) => {
             this.message = res
             this.messageArea = ''
@@ -212,10 +204,9 @@ export default {
         )
       }
     },
-
-    convertUsersToList () {
+    addUsersToList () {
       this.loading = true
-      this.$store.dispatch('auth/convertUsersToListEmo', this.currentUser).then(
+      this.$store.dispatch('auth/addUsersToListEmo3', this.currentUser).then(
         (res) => {
           this.allEmoUsers = res
         },
@@ -230,9 +221,26 @@ export default {
         }
       )
     },
-    getAllUsersFromSpeak () {
+    convertUsersToList () {
       this.loading = true
-      this.$store.dispatch('auth/getAllUsersEmo', this.currentUser).then(
+      this.$store.dispatch('auth/convertUsersToListEmo3', this.currentUser).then(
+        (res) => {
+          this.allEmoUsers = res
+        },
+        (error) => {
+          this.loading = false
+          this.message =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString()
+        }
+      )
+    },
+    getAllUsersFromEmo () {
+      this.loading = true
+      this.$store.dispatch('auth/getAllUsersEmo3', this.currentUser).then(
         (res) => {
           this.allEmoUsers = res
         },
@@ -255,7 +263,7 @@ export default {
         admin: this.currentUser,
         email: email
       }
-      this.$store.dispatch('auth/changeAccessToOneUser', data).then(
+      this.$store.dispatch('auth/changeEmo3AccessToOneUser', data).then(
         (res) => {
           this.allEmoUsers = res
           window.location.reload()
@@ -322,7 +330,7 @@ export default {
     if (!this.currentUser) {
       this.$router.push('/login')
     } else {
-      this.getAllUsersFromSpeak(this.currentUser.email)
+      this.getAllUsersFromEmo(this.currentUser.email)
     }
   }
 }

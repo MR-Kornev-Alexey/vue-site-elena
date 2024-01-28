@@ -2,6 +2,7 @@
   <div id="app">
     <v-toolbar
       color="#4464A3"
+      v-if="!$route.matched.some((record) => record.name === 'newCourse')"
     >
       <v-toolbar-items class="d-flex justify-center text-center">
         <svg-icon type="mdi" :path="menu" @click.stop="drawer = !drawer" class="iconsOpen" size="28px"></svg-icon>

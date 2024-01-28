@@ -1,6 +1,7 @@
 <template>
   <v-row>
-    <v-col md="10" class="d-flex justify-center align-items-center">
+    <v-col md="10" class="">
+      <div class="col-md-11  block-terms">
         <h2 style="text-align: center"><strong>Политика конфиденциальности</strong></h2>
         <p>&nbsp;</p>
         <p>Настоящая Политика конфиденциальности персональных данных (далее &ndash;&nbsp;<strong>Политика конфиденциальности</strong>) действует в отношении всей информации, которая размещена на&nbsp; сайтах и ботах&nbsp;&nbsp;<strong>врача и&nbsp; психолога Елены Корневой,</strong>&nbsp;(далее &ndash;&nbsp;<strong>Ресурсы Елены Корневой</strong>&nbsp;), расположенных на доменных именах&nbsp;<strong data-redactor-tag="strong">elenakorneva.ru, elenakorneva.site</strong>&nbsp;(а также их субдоменах), а также в боте&nbsp;<strong>HelenBot</strong>, может получить о Пользователе во время использования вышеуказанных сайтов и ботов,&nbsp; его программ и его продуктов.</p>
@@ -114,13 +115,14 @@
         <p>&nbsp;</p>
         <p>Обновлено: 03 Ноября 2023 года</p>
         <p>г. Москва, Елена Корнева (самозанятая))</p>
+      </div>
     </v-col>
   </v-row>
 </template>
 
 <script>
 export default {
-  name: 'Terms-one'
+  name: 'Privacy-one'
 }
 </script>
 

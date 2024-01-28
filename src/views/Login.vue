@@ -9,13 +9,16 @@
       <Form @submit="handleLogin" :validation-schema="schema">
         <div class="form-group">
           <label for="username">Username</label>
-          <Field name="username" type="text" class="form-control" />
-          <ErrorMessage name="username" class="error-feedback" />
+          <i class="tip-login">
+            N.B. Username - это не email, как правило
+          </i>
+          <Field name="username" type="text" class="form-control"/>
+          <ErrorMessage name="username" class="error-feedback"/>
         </div>
         <div class="form-group">
           <label for="password">Password</label>
-          <Field name="password" type="password" class="form-control" />
-          <ErrorMessage name="password" class="error-feedback" />
+          <Field name="password" type="password" class="form-control"/>
+          <ErrorMessage name="password" class="error-feedback"/>
         </div>
 
         <div class="form-group text-center">
@@ -34,6 +37,13 @@
           </div>
         </div>
       </Form>
+      <div class="mx-auto">
+        <router-link to="/register">
+          <button class="btn btn-registration  btn-block mt-4">
+            <span>Регистрация</span>
+          </button>
+        </router-link>
+      </div>
     </div>
     <Footer class="footer-down"/>
   </div>
@@ -79,6 +89,7 @@ export default {
       this.loading = true
       this.$store.dispatch('auth/login', user).then(
         () => {
+          this.loading = false
           this.$router.push('/profile')
         },
         (error) => {
@@ -97,21 +108,36 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.footer-down{
+.footer-down {
   position: fixed;
   bottom: 0;
   width: 100%;
 }
+
 .btn-pay {
   width: 220px;
   background-color: #4464a3;
   border-radius: 16px;
   padding: 6px;
   color: #EFF7FF;
-  .v-btn__content{
+
+  .v-btn__content {
     color: white;
   }
 }
+
+.btn-registration {
+  width: 220px;
+  background-color: #156434;
+  border-radius: 16px;
+  padding: 6px;
+  color: #EFF7FF;
+
+  .v-btn__content {
+    color: white;
+  }
+}
+
 label {
   display: block;
   margin-top: 10px;

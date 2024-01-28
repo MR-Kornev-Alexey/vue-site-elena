@@ -97,10 +97,9 @@
         <v-row class="justify-center d-flex">
           <v-col cols="11" md="6" class="d-flex">
             <p class="">
-              Если ребенок вынашивался <strong>{{ showWeek(dataOfTableUser.data.baby_week) }}</strong> и в данный момент
-              его фактический возраст составляет <strong>{{ showMonth(currentMonth) }}</strong>,
-              то в данном случае учитывается коррекция возраста. Расчетный возраст для прохождения теста будет составлять
-              <strong>{{ showMonth(calcFactOld) }}</strong>.
+              В данный момент фактический возраст ребенка составляет <strong>{{ showMonth(currentMonth) }}</strong>.
+              При вынашивании ребенка <strong>{{ showWeek(dataOfTableUser.data.baby_week) }}</strong> учитывается коррекция возраста.
+              Расчетный возраст в этом случае будет составлять <strong>{{ showMonth(calcFactOld) }}</strong>.
               <br>
               Если результаты теста по фактическому возрасту <strong> ( {{ currentMonth }} ) </strong> не удовлетворяют
               вашим ожиданиям или вызывают вопросы, рекомендуется также пройти тест по расчетному возрасту <strong> (

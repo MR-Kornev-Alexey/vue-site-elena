@@ -5,12 +5,16 @@ import Register from '../views/Register.vue'
 import Courses from '../views/MainCourses'
 import Advice from '../views/MainAdvice'
 import About from '../views/MainAbout'
+import Terms from '../Legal/Terms'
+import Privacy from '../Legal/Privacy'
 // lazy-loaded
 const Profile = () => import('../views/Profile.vue')
 const BoardAdmin = () => import('../views/BoardAdmin.vue')
 const BoardModerator = () => import('../views/BoardModerator.vue')
 const BoardUser = () => import('../views/BoardUser.vue')
 const AllUser = () => import('../views/allMod/ModAllUsers')
+const Star30 = () => import('../views/allMod/ModStar3_0')
+const Star10 = () => import('../views/allMod/ModStar1_0')
 const CardOfOne = () => import('../views/oneUser/cardOfOneUser')
 const ShowHW = () => import('../views/allMod/ModHomeworks')
 const allUsersInfo = () => import('../views/allMod/SendUsersInfo')
@@ -18,6 +22,7 @@ const showEndingAllUsersOfSending = () => import('../views/allMod/showEndingAllU
 const showAllForBot = () => import('../views/allMod/showAllForBotHW')
 const showSpeakCourse = () => import('../views/allMod/showSpeakCourse')
 const showEmoCourse = () => import('../views/allMod/showEmoCourse')
+const showEmoCourse3 = () => import('../views/allMod/showEmoCourse3')
 const PatternLanding = () => import('../views/allLanding/PatternLanding')
 const speakLanding = () => import('../views/allLanding/landingSorry')
 const SpeakLandingSpecial = () => import('../views/allLanding/PatternLandingSpeak')
@@ -73,9 +78,14 @@ const thePsychologistHimself = () => import('../AllTest/addTest/thePsychologistH
 const brainWork = () => import('../AllTest/addTest/brainWork')
 const goToDoctor = () => import('../AllTest/goToDoctor/goToDoctor')
 const psychophysicalTest = () => import('../AllTest/psychophysicalTest/psychophysicalTest')
+const psychophysicalTestSecond = () => import('../AllTest/psychophysicalTest/psychophysicalTestSecond')
+const resultPSFTest = () => import('../AllTest/psychophysicalTest/resultPSFTest')
+const diaperMystery = () => import('../diaperMystery/diaperMystery')
+const newCourse = () => import('../newCourse/newCourse')
 // HW
 const HWAddPay = () => import('../bills/HWAddPay')
 const allSendIntro = () => import('../allSendHW/allSendIntro')
+const showAllMotherHood = () => import('../views/allMod/showAllMotherHood')
 
 const routes = [
   {
@@ -102,6 +112,14 @@ const routes = [
   {
     path: '/login',
     component: Login
+  },
+  {
+    path: '/terms',
+    component: Terms
+  },
+  {
+    path: '/privacy',
+    component: Privacy
   },
   {
     path: '/register',
@@ -204,6 +222,18 @@ const routes = [
     component: CommonOfGuides
   },
   {
+    path: '/diaperMystery',
+    name: 'diaperMystery',
+    // lazy-loaded
+    component: diaperMystery
+  },
+  {
+    path: '/newCourse',
+    name: 'newCourse',
+    // lazy-loaded
+    component: newCourse
+  },
+  {
     path: '/resultMoveTest',
     name: 'resultMoveTest',
     // lazy-loaded
@@ -264,6 +294,18 @@ const routes = [
     component: psychophysicalTest
   },
   {
+    path: '/psychophysicalTestSecond',
+    name: 'psychophysicalTestSecond',
+    // lazy-loaded
+    component: psychophysicalTestSecond
+  },
+  {
+    path: '/resultPSFTest',
+    name: 'resultPSFTest',
+    // lazy-loaded
+    component: resultPSFTest
+  },
+  {
     path: '/resultMove12andMore',
     name: 'resultMove12andMore',
     // lazy-loaded
@@ -300,6 +342,18 @@ const routes = [
     component: BoardUser
   },
   {
+    path: '/star3_0',
+    name: 'star3_0',
+    // lazy-loaded
+    component: Star30
+  },
+  {
+    path: '/star1_0',
+    name: 'star1_0',
+    // lazy-loaded
+    component: Star10
+  },
+  {
     path: '/allUsers',
     name: 'allUsers',
     // lazy-loaded
@@ -322,6 +376,12 @@ const routes = [
     name: 'showEmoCourse',
     // lazy-loaded
     component: showEmoCourse
+  },
+  {
+    path: '/showEmoCourse3',
+    name: 'showEmoCourse3',
+    // lazy-loaded
+    component: showEmoCourse3
   },
   {
     path: '/speakLanding',
@@ -476,6 +536,12 @@ const routes = [
     component: ShowHW
   },
   {
+    path: '/showAllMotherHood',
+    name: 'showAllMotherHood',
+    // lazy-loaded
+    component: showAllMotherHood
+  },
+  {
     path: '/test/',
     children: [
       {
@@ -508,7 +574,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  const publicPages = ['/login', '/register', '/home', '/courses', '/advice', '/about', '/firstQuiz', '/patternLanding', '/publicQuiz', '/speakLanding', '/instructionCommon', '/speakLandingSpecial', '/HWAddPay']
+  const publicPages = ['/login', '/register', '/home', '/courses', '/advice', '/about', '/firstQuiz', '/patternLanding', '/publicQuiz', '/speakLanding', '/instructionCommon', '/speakLandingSpecial', '/HWAddPay', '/newCourse']
   const authRequired = !publicPages.includes(to.path)
   const loggedIn = localStorage.getItem('user')
   //   trying to access a restricted page + not logged in
@@ -519,5 +585,4 @@ router.beforeEach((to, from, next) => {
     next()
   }
 })
-
 export default router

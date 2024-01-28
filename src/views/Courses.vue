@@ -4,7 +4,7 @@
       <v-col cols="11" md="auto" class="d-flex justify-center" v-for="(item, key) in allCourses" :key="key">
         <div style="position: relative">
           <v-card
-            class="mx-auto cards-user"
+            class="mx-auto cards-user" style="position: relative"
           >
             <v-img
               :src="choiceImg(item.img)"
@@ -135,6 +135,13 @@ export default {
 </script>
 
 <style lang="scss">
+.card-BF{
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 70px;
+  z-index: 666;
+}
 .card-description {
   font-size: 14px;
 

@@ -42,18 +42,18 @@
         </router-link>
       </v-col>
     </v-row>
-<!--    <v-row class="justify-center text-center ">-->
-<!--      <v-col-->
-<!--        cols="11"-->
-<!--        md="6"-->
-<!--      >-->
-<!--        <router-link :to="'#'">-->
-<!--          <v-btn class="btn-dream-next mx-auto">-->
-<!--           Психо - физическое развитие-->
-<!--          </v-btn>-->
-<!--        </router-link>-->
-<!--      </v-col>-->
-<!--    </v-row>-->
+    <v-row class="justify-center text-center ">
+      <v-col
+        cols="11"
+        md="6"
+      >
+        <router-link :to="'/psychophysicalTest'">
+          <v-btn class="btn-dream-next mx-auto">
+           Психо - физическое развитие
+          </v-btn>
+        </router-link>
+      </v-col>
+    </v-row>
     <v-row class="justify-center text-center">
       <v-col
         cols="11"

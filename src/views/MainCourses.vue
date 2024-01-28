@@ -25,9 +25,6 @@
       </v-col>
     </v-row>
     <CourseFirstBlock />
-<!--    <CourseSecondBlock />-->
-<!--    <CourseThirdBlock />-->
-<!--    <CourseFourthBlock />-->
     <CourseFifthBlock />
     <CourseSixthBlock />
     <Footer />

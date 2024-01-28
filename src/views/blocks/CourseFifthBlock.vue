@@ -49,7 +49,7 @@
             md="6"
             class="d-flex justify-center"
           >
-            <a href="http://elenakorneva.ru/secret" target="_blank">
+            <a href="https://diaper.kornevgmbh.com/" target="_blank">
               <v-btn class="btn-pay">
                 Подробнее
               </v-btn></a>

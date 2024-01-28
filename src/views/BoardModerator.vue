@@ -1,14 +1,5 @@
 <template>
   <div class="container">
-    <div class="profile" >
-      <v-row class="justify-center d-flex">
-        <v-col cols="11" class="d-flex justify-center">
-          <h4 class="title-user">
-            Кабинет модератора
-          </h4>
-        </v-col>
-      </v-row>
-    </div>
     <div>
       <div class="profile-mod">
         <v-row class="justify-center d-flex">
@@ -48,12 +39,24 @@ export default {
         link: '/allUsers'
       },
       {
+        label: 'Растим звезду 1.0',
+        link: '/star1_0'
+      },
+      {
+        label: 'Растим звезду 3.0',
+        link: '/star3_0'
+      },
+      {
         label: 'Курс "Речевое развитие"',
         link: '/showSpeakCourse'
       },
       {
         label: '"Эмоциональное развитие"',
         link: '/showEmoCourse'
+      },
+      {
+        label: '"Эмоциональное развитие 3.0"',
+        link: '/showEmoCourse3'
       },
       {
         label: 'Отправка информационных писем',
@@ -70,6 +73,10 @@ export default {
       {
         label: 'Просмотр бота ДЗ',
         link: '/showAllForBot'
+      },
+      {
+        label: 'Статистика по бесплатниому курсу',
+        link: '/showAllMotherHood'
       }
     ]
   }

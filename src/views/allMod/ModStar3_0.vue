@@ -4,69 +4,117 @@
       <v-row class="justify-center d-flex">
         <v-col cols="11" class="d-flex justify-center">
           <h4 class="title-user">
-            Просмотр и изменение доступа к курсам
+           Растим Звезду 3.0
           </h4>
         </v-col>
       </v-row>
     </div>
+    <div class="profile-mod">
+      <v-row class="justify-center d-flex">
+        <v-col cols="11" class="d-flex justify-center">
+          <v-btn
+            variant="text"
+            class="btn-mod"
+            @click="sendLetter=!sendLetter"
+          >
+            Написать письмо
+          </v-btn>
+        </v-col>
+      </v-row>
+      <v-row class="justify-center d-flex">
+        <v-col cols="11" class="d-flex justify-center">
+          {{message}}
+        </v-col>
+      </v-row>
+    </div>
+    <transition name="fade" >
+      <v-row class="d-flex justify-center windowOpen" v-if="sendLetter" style="border: 2px solid #3a5493">
+        <v-col cols="11"
+               md="8"
+               align-self="center"
+               style="margin: auto "
+               class="text-center justify-center"
+               :key="render"
+        >
+           <h3>Отправить всем письмо</h3>
+            <div class="d-flex" style="flex-direction: column">
+              <div class="d-flex-column  justify-center">
+                <v-textarea label="введите текст" v-model="textArea"></v-textarea>
+              <v-btn
+                variant="text"
+                class="btn-mod"
+                @click="sendingLetter"
+              >
+               отправить
+              </v-btn>
+
+            </div>
+          </div>
+        </v-col>
+      </v-row>
+    </transition>
     <div>
-      <div class="profile-mod">
+      <div class="profile-mod table-mod">
         <v-row class="justify-center d-flex">
-          <v-col cols="12"  class="justify-center d-flex" style="flex-direction: column">
+          <v-col cols="12" class="justify-center d-flex" style="flex-direction: column">
             <div class="d-inline-flex all-size-font justify-center" style="width: 100%; margin: auto">
-              <div class="size-5-left">
+              <div class="size-5-left table-mod">
                 №№
               </div>
-              <div class="size-20-name">
+              <div class="size-20-name table-mod">
                 Имя пользователя
               </div>
-              <div class="size-10-bd">
+              <div class="size-10-bd table-mod">
                 ДР ребенка
               </div>
-              <div class="size-20">
+              <div class="size-20 table-mod">
                 Имя ребенка
               </div>
-              <div class="size-25">
-               E-mail
+              <div class="size-25 table-mod">
+                E-mail
               </div>
-              <div class="size-5">
+              <div class="size-5 table-mod">
                 <svg-icon type="mdi" :path="path6" :size="24"></svg-icon>
               </div>
-              <div class="size-10">
-               HelenBot
-              </div>
+<!--              <div class="size-10 table-mod">-->
+<!--                HelenBot-->
+<!--              </div>-->
             </div>
-            <div v-for="(item, key) in allUsers" :key="key" >
+            <div v-for="(item, key) in allUserStar" :key="key">
               <div class="d-inline-flex all-size all-size-font justify-center" style="width: 100%; margin: auto">
-                <div class="size-5-left" :class="colorLight(key)">
-                  {{key + 1 }}
+                <div class="size-5-left table-mod" :class="colorLight(key)">
+                  {{ key + 1 }}
                 </div>
-                <div class="size-20-name" :class="colorLight(key)" @click="openUser({ email: item.email, name: item.name })">
-                  {{item.name}}
+                <div class="size-20-name table-mod" :class="colorLight(key)"
+                     @click="openUser({ email: item.email, name: item.name })">
+                  {{ item.name }}
                 </div>
-                <div class="size-10-bd" :class="colorLight(key)">
-                  {{item.birthdayBaby}}
+                <div class="size-10-bd table-mod" :class="colorLight(key)">
+                  {{ item.birthdayBaby }}
                 </div>
-                <div class="size-20" :class="colorLight(key)">
-                  {{item.babyName}}
+                <div class="size-20 table-mod" :class="colorLight(key)">
+                  {{ item.babyName }}
                 </div>
-                <div class="size-25-last" :class="colorLight(key)">
-                  {{item.email}}
+                <div class="size-25-last table-mod" :class="colorLight(key)">
+                  {{ item.email }}
                 </div>
-                <div class="size-5" :class="colorLight(key)" @click="openUser({ email: item.email, name: item.name })">
+                <div class="size-5 table-mod" :class="colorLight(key)" @click="openUser({ email: item.email, name: item.name })">
                   <svg-icon type="mdi" :path="path6" :size="24"></svg-icon>
                 </div>
-                <div class="size-10" :class="colorLight(key)" @click="sendMessageForUser({ email: item.email, name: item.name , chatId: item.chatId})">
-                  <svg-icon type="mdi" :path="msg" :size="24"></svg-icon>
-                </div>
+<!--                <div class="size-10 table-mod" :class="colorLight(key)"-->
+<!--                     @click="sendMessageForUser({ email: item.email, name: item.name , chatId: item.chatId})">-->
+<!--                  <svg-icon type="mdi" :path="msg" :size="24"></svg-icon>-->
+<!--                </div>-->
               </div>
             </div>
           </v-col>
         </v-row>
       </div>
     </div>
-    <PopSendMessageHelenBot  :visible="showPopUpSend" :userMail="openUserMail" :datUser="datUser" :nameUser="nameUser" :chatIdUser="chatIdUser" ref="SendOneComponent"/>
-    <PopUpUser  :visible="showPopUp" :userMail="openUserMail" :datUser="datUser" :nameUser="nameUser" ref="childComponent"/>
+    <PopSendMessageHelenBot :visible="showPopUpSend" :userMail="openUserMail" :datUser="datUser" :nameUser="nameUser"
+                            :chatIdUser="chatIdUser" ref="SendOneComponent"/>
+    <PopUpUser :visible="showPopUp" :userMail="openUserMail" :datUser="datUser" :nameUser="nameUser"
+               ref="childComponent"/>
   </div>
 </template>
 
@@ -89,6 +137,9 @@ export default {
     dialog3: false,
     showLogo: false,
     isScrolling: false,
+    sendLetter: false,
+    textArea: null,
+    render: 0,
     pencil: mdiNoteEditOutline,
     path6: mdiAccountEdit,
     msg: mdiMessageReplyTextOutline,
@@ -101,6 +152,7 @@ export default {
     chatIdUser: '',
     loading: false,
     message: '',
+    allUserStar: [],
     courses: [
       {
         title: 'Общий доступ',
@@ -140,8 +192,47 @@ export default {
     ]
   }),
   methods: {
+    sendingLetter () {
+      if (this.textArea === null) {
+        alert('введите текст')
+      } else {
+        const data = {
+          sendingLetter: this.textArea,
+          mail: this.currentUser.email
+        }
+        this.$store.dispatch('auth/star3SendingLetter', data).then(
+          (res) => {
+            this.message = res.msg
+            setTimeout(async () => {
+              if (res.check) {
+                this.textArea = ''
+                this.sendLetter = !this.sendLetter
+                this.message = ''
+              }
+            }, 10000)
+          },
+          (error) => {
+            this.loading = false
+            this.message =
+              (error.response &&
+                error.response.data &&
+                error.response.data.message) ||
+              error.message ||
+              error.toString()
+          }
+        )
+      }
+    },
+    allUsers () {
+      let item
+      for (item in this.$store.state.auth.allUsers) {
+        this.allUserStar.push(item)
+      }
+    },
     cursorOpen (index) {
-      if (index) { return 'cursorPointer' } else {
+      if (index) {
+        return 'cursorPointer'
+      } else {
         return ''
       }
     },
@@ -165,7 +256,10 @@ export default {
       }
     },
     changeAccess (index) {
-      const data = { index: index, mail: this.userMail }
+      const data = {
+        index: index,
+        mail: this.userMail
+      }
       this.$store.dispatch('auth/changeAccess', data).then(
         (res) => {
           this.newDatUser = res
@@ -189,11 +283,11 @@ export default {
       this.nameUser = data.name
       this.$refs.SendOneComponent.clearAll()
     },
-    getAllDataFromTelegram (user) {
+    getStar3DataFromTelegram (user) {
       this.loading = true
-      this.$store.dispatch('auth/allUsersTelegram', user).then(
-        () => {
-          // this.$router.push('/profile')
+      this.$store.dispatch('auth/UsersStar3Telegram', user).then(
+        (res) => {
+          this.allUserStar = res
         },
         (error) => {
           this.loading = false
@@ -221,13 +315,10 @@ export default {
   computed: {
     currentUser () {
       return this.$store.state.auth.user
-    },
-    allUsers () {
-      return this.$store.state.auth.allUsers
     }
   },
   mounted () {
-    this.getAllDataFromTelegram(this.currentUser.email)
+    this.getStar3DataFromTelegram(this.currentUser.email)
     if (!this.currentUser) {
       this.$router.push('/login')
     }

@@ -1,121 +1,69 @@
 <template>
   <div class="col-md-12 block-register">
-    <v-row class="d-flex justify-center mx-auto mt-6">
-      <v-col class="d-flex justify-center mx-auto" md="8" cols="11">
+    <v-row class="d-flex justify-center mx-auto mt-6 text-center">
+      <v-col class="d-flex-column justify-center mx-auto" md="8" cols="11">
         <div class="mx-auto">
-          <p>Приветствеуем вас в нашем комьюнити</p>
-          <p>В системе функционируют данный сервер и HelenBot, каждый из которых предназначен для разных целей</p>
-          <p>Для успешной работы вам необходимо сделать несколько шагов</p>
-          <p><strong>1 шаг:</strong> Регистрация на сервере (форма ввода ниже)
-            <br/><strong>Сервер</strong> содержит Личный кабинет (ЛК), обеспечивает доступ к Web-приложениям, позволяет
-            менять данные.
-          </p>
-          <p><strong>2 шаг:</strong> Регистрация в HelenBot
-            <br/><strong>HelenBot</strong> предназначен для выдачи информационных материалов, решения текущих задач и
-            общей
-            информационной рассылки, он обеспечивает обратную связь, то есть пользователи могут взаимодействовать с ним,
-            получать дополнительную информацию.
-          </p>
-          <p><strong>3 шаг:</strong> СТАРТ  в Bot "Рассылка ДЗ от Елены..."
-            <br/><strong>Bot "Рассылка..."</strong> предназначен только для рассылки домашних заданий (ДЗ) и теоретических материалов.
-            Обратной связи нет - только получение писем. Рекомендован, если вы планируете получать ДЗ и другие материалы.
-          </p>
-          <p>
-            <strong>N.B.</strong> Email на данном сервере и в HelenBot должны быть синхронизированы.
-          </p>
+          <h4>Приветствуем Вас в нашем комьюнити</h4>
+          <p> Для начала Вам надо синхронизировать Ваш емейл с HelenBot.</p>
         </div>
       </v-col>
     </v-row>
-    <v-row class="d-flex justify-center mx-auto mb-4">
-      <v-col class="d-flex justify-center mx-auto" md="5" cols="11">
-        <div class="mx-auto">
-            <button class="btn btn-green-tip  btn-block" @click="weGetBaby">
-              Регистрация,<br>если уже ребенок родился
-            </button>
-          </div>
-      </v-col>
-      <v-col class="d-flex justify-center mx-auto" md="5" cols="11">
-        <div class="mx-auto">
-            <button class="btn btn-green-tip  btn-block" @click="weWaitBaby">
-              Регистрация,<br>если Вы ждете кроху
-            </button>
-        </div>
-      </v-col>
-    </v-row>
-    <div class="card card-container" v-if="getBaby">
-      <Form @submit="handleRegisterGet" :validation-schema="schema">
-        <div v-if="!successful">
-          <div class="form-group form-register">
-            <label for="username">Создайте Ваш username</label>
-            <Field name="username" type="text" class="form-control"/>
-            <ErrorMessage name="username" class="error-feedback"/>
-          </div>
-          <div class="form-group form-register">
-            <label for="email">Введите Ваш email</label>
-            <Field name="email" type="email" class="form-control"/>
-            <ErrorMessage name="email" class="error-feedback"/>
-          </div>
-          <div class="form-group form-register">
-            <label for="password">Придумайте пароль</label>
-            <Field name="password" type="password" class="form-control"/>
-            <ErrorMessage name="password" class="error-feedback"/>
-          </div>
-          <div class="form-group form-register">
-              <label for="realName"><p>Введите Ваши Имя и Фамилию</p></label>
-              <Field name="realName" type="text" class="form-control"/>
-              <ErrorMessage name="realName" class="error-feedback"/>
-            </div>
-            <div class="form-group form-register">
-              <label for="baby"><p>Введите имя ребенка</p></label>
-              <Field name="baby" type="text" class="form-control"/>
-              <ErrorMessage name="baby" class="error-feedback"/>
-            </div>
-            <div class="form-group form-register">
-              <label for="birthday"><p>Введите дату рождения ребенка</p>
-                <string class="tips-input">введите формате ДД-ММ-ГГГГ</string>
-              </label>
-              <Field name="birthday" type="text" class="form-control" pattern="\d{2}-\d{2}-\d{4}"/>
-              <ErrorMessage name="birthday" class="error-feedback"/>
-            </div>
-            <div class="form-group form-register ">
-              <label for="location"><p>Введите место жительства</p></label>
-              <Field name="location" type="text" class="form-control"/>
-              <ErrorMessage name="location" class="error-feedback"/>
-            </div>
-            <div class="form-group text-center mt-4">
-              <button class="btn btn-pay btn-block" :disabled="loading || !access">
+    <v-row class="d-flex justify-center mx-auto mt-6" v-if="showCheck">
+      <v-col class="d-flex-column justify-center mx-auto" md="8" cols="11">
+        <div class="card card-container">
+          <Form @submit="handleCheckEmail" :validation-schema="schema">
+            <div>
+              <div class="form-group form-register">
+                <label for="email">Введите Ваш email</label>
+                <Field name="email" type="email" class="form-control"/>
+                <ErrorMessage name="email" class="error-feedback"/>
+              </div>
+               <div class="form-group text-center mt-4">
+                <button class="btn btn-pay btn-block" :disabled="loading">
               <span
                 v-show="loading"
                 class="spinner-border spinner-border-sm"
               ></span>
-                Регистрация
-              </button>
+                  Проверить
+                </button>
+              </div>
             </div>
+          </Form>
+          <div
+            v-if="messageCheck"
+            class="alert mt-4"
+            :class="result ? 'alert-success' : 'alert-danger'"
+          >
+            {{ messageCheck }}
           </div>
-      </Form>
-      <v-row class="d-flex justify-center text-center">
-        <v-col
-          cols="12" md="auto"
-          class="d-flex justify-center"
-        >
-          <label class="checkbox">
-            <input type="checkbox" v-model="access" hide-details/>
-            <span style="font-size: 12px"> Я соглашаюсь с обработкой персональных данных</span>
-          </label>
-        </v-col>
-      </v-row>
+        </div>
+      </v-col>
+    </v-row>
+    <v-row class="d-flex justify-center mx-auto mt-6">
+      <v-col class="d-flex-column justify-center mx-auto text-center" md="8" cols="11">
+        <div class="mx-auto mb-6">
+          <p> Если Вы это еще не сделали, то пожалуйта перейдите в HelenBot и стартуйте в нем</p>
+        </div>
 
-      <div
-        v-if="message"
-        class="alert"
-        :class="successful ? 'alert-success' : 'alert-danger'"
-      >
-        {{ message }}
-      </div>
-    </div>
-    <div class="card card-container" v-if="waitBaby">
+        <div class="mx-auto">
+          <a href="https://t.me/mrk_new_bot">
+            <button class="btn btn-green-tip  btn-block" @click="weGetBaby">
+              Helenbot
+            </button>
+          </a>
+        </div>
+      </v-col>
+    </v-row>
+    <v-row class="d-flex justify-center mx-auto mt-6">
+      <v-col class="d-flex-column justify-center mx-auto text-center" md="8" cols="11">
+        <div class="mx-auto mb-6">
+          <p>Или пройдите регистрацию ниже </p>
+        </div>
+      </v-col>
+    </v-row>
+    <div class="card card-container">
       <Form @submit="handleRegisterWait" :validation-schema="schemaWait">
-        <div v-if="!successful">
+        <div>
           <div class="form-group form-register">
             <label for="username">Создайте Ваш username</label>
             <Field name="username" type="text" class="form-control"/>
@@ -130,16 +78,6 @@
             <label for="password">Придумайте пароль</label>
             <Field name="password" type="password" class="form-control"/>
             <ErrorMessage name="password" class="error-feedback"/>
-          </div>
-          <div class="form-group form-register">
-            <label for="realName"><p>Введите Ваши Имя и Фамилию</p></label>
-            <Field name="realName" type="text" class="form-control"/>
-            <ErrorMessage name="realName" class="error-feedback"/>
-          </div>
-          <div class="form-group form-register ">
-            <label for="location"><p>Введите место жительства</p></label>
-            <Field name="location" type="text" class="form-control"/>
-            <ErrorMessage name="location" class="error-feedback"/>
           </div>
           <div class="form-group text-center mt-4">
             <button class="btn btn-pay btn-block" :disabled="loading || !access">
@@ -172,7 +110,7 @@
         {{ message }}
       </div>
     </div>
-    <Footer />
+    <Footer/>
   </div>
 </template>
 
@@ -211,44 +149,23 @@ export default {
     })
 
     const schema = yup.object().shape({
-      username: yup
-        .string()
-        .required('Ввод Username обязателен!')
-        .min(3, '')
-        .max(16, 'Максимально 16 знаков!')
-        .matches(/^[a-zA-Z@]+$/, 'Username может содержать только латиницу и без пробелов')
-        .trim(),
       email: yup
         .string()
         .required('Ввод Email обязателен')
         .email('Email is invalid!')
-        .max(30, 'Must be maximum 30 characters!'),
-      password: yup
-        .string()
-        .required('Ввод password обязателен')
-        .min(6, 'Прошу ввести более 6 знаков!')
-        .max(40, 'Must be maximum 40 characters!'),
-      realName: yup
-        .string()
-        .required('Ввод имени обязателен')
-        .max(20, 'Максимально 20 знаков!'),
-      baby: yup
-        .string()
-        .required('Ввод имени ребенка обязателен')
-        .max(16, 'Максимально 16 знаков!'),
-      birthday: yup
-        .string()
-        .required('Ввод даты рождения ребенка обязателен')
-        .matches(/^(0[1-9]|[1-2]\d|3[01])-(0[1-9]|1[0-2])-20(20|21|22|23)$/, 'неверный формат даты, введите ДР в формате ДД-ММ-ГГГГ')
+        .max(30, 'Must be maximum 30 characters!')
     })
 
     return {
       successful: false,
+      result: false,
       loading: false,
       message: '',
+      messageCheck: '',
       access: false,
       getBaby: false,
       waitBaby: false,
+      showCheck: true,
       schema,
       schemaWait
     }
@@ -272,27 +189,40 @@ export default {
       this.getBaby = true
       this.waitBaby = false
     },
-    handleRegisterGet (user) {
+    handleCheckEmail (user) {
       const data = {
-        username: user.username,
-        email: user.email,
-        password: user.password,
-        real_name_telegram: user.realName,
-        baby_name_telegram: user.baby,
-        birthday_telegram: user.birthday,
-        location: user.location
+        email: user.email
       }
-      this.handleRegister(data)
+      console.log(data)
+      this.messageCheck = ''
+      this.successful = false
+      this.loading = true
+      this.$store.dispatch('auth/checkEmailRegister', user).then(
+        (res) => {
+          this.messageCheck = res.data
+          this.result = res.result
+          this.loading = false
+          setTimeout(() => {
+            this.showCheck = false
+          }, 8000)
+        },
+        (error) => {
+          this.message =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString()
+          this.successful = false
+          this.loading = false
+        }
+      )
     },
     handleRegisterWait (user) {
       const data = {
         username: user.username,
         email: user.email,
-        password: user.password,
-        real_name_telegram: user.realName,
-        baby_name_telegram: 'wait-baby',
-        birthday_telegram: 'wait-baby',
-        location: user.location
+        password: user.password
       }
       this.handleRegister(data)
     },

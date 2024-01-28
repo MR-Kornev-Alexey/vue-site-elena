@@ -1,5 +1,5 @@
 <template>
-  <div class="" style="color: #172669;">
+  <div style="color: #172669;">
     <testHeader :title="titleOut" :showBaby="correctBabyInHeader" :mainLink="mainLink" />
     <div v-if="blockTest">
       <v-row class="justify-center d-flex mt-4">

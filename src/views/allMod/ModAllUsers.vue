@@ -115,27 +115,32 @@ export default {
       {
         title: 'Рассылка ДЗ',
         index: 'assess_homeworks',
-        open: true
+        open: false
       },
       {
         title: 'Вебинары по развитию',
         index: 'access_webinars',
-        open: true
+        open: false
       },
       {
         title: 'Курс по эмоциям',
-        index: 'access_speak',
-        open: true
+        index: 'access_emo',
+        open: false
+      },
+      {
+        title: 'Курс по эмоциям 3',
+        index: 'access_emo_3',
+        open: false
       },
       {
         title: 'Курс по речевому развитию',
-        index: 'access_emo',
-        open: true
+        index: 'access_speak',
+        open: false
       },
       {
         title: 'Участник интенсива',
         index: 'access_intensive',
-        open: true
+        open: false
       }
     ]
   }),
@@ -211,7 +216,7 @@ export default {
     },
     openUser (data) {
       // alert(data)
-      this.showPopUp = !this.showPopUp
+      // this.showPopUp = !this.showPopUp
       this.openUserMail = data.email
       this.openUserName = data.name
       this.nameUser = data.name

@@ -1,16 +1,16 @@
 <template>
-  <div class="">
+  <div class="" :key="renderAll">
     <v-row class="justify-center d-flex" style="background-color: #3d498c">
       <v-col cols="11" class="d-flex justify-center text-center">
         <h4 class="title-user text-white">
-          Профиль {{ currentUser.email }}
+          Профиль {{ userTableNewDate?.data?.email_telegram}}
         </h4>
       </v-col>
     </v-row>
     <div class="">
       <v-row class="justify-center d-flex text-center mt-2">
         <v-col cols="11" class="d-flex justify-center" style="flex-direction: column">
-          <div class="text-center my-4">
+          <div class="text-center my-4">``
             <router-link :to="'/user'">
               <v-btn class="btn-green">
                 Перейти в ЛК
@@ -19,15 +19,15 @@
           </div>
         </v-col>
       </v-row>
-      <v-row class="justify-center d-flex ">
+      <v-row class="justify-center d-flex " @click="dialogUserName = true">
         <v-col cols="11" md="5" class="d-flex  ">
           <h4 class="d-inline-flex small-profile">
-            <svg-icon type="mdi" :path="accountDetails" class="mr-3" size="22px" style="cursor: pointer"></svg-icon>
+            <svg-icon type="mdi" :path="noteEdit" class="mr-3" size="22px" style="cursor: pointer"></svg-icon>
             <div class="profile-bold">
               Ваш username:
             </div>
             <div class="ml-4">
-              {{ currentUser.username }}
+              {{userTableNewDate?.data?.username}}
             </div>
           </h4>
         </v-col>
@@ -40,7 +40,7 @@
               Ваш Email:
             </div>
             <div class="ml-4">
-              {{ currentUser.email }}
+              {{ telegramUser?.data?.email_telegram }}
             </div>
           </h4>
         </v-col>
@@ -108,7 +108,7 @@
                 Имя вашего ребенка:
               </div>
               <div class="ml-4">
-                {{ babyNameCalc }}
+                {{ telegramUser?.data?.baby_name_telegram }}
               </div>
             </h4>
           </v-col>
@@ -135,39 +135,12 @@
                 Дата рождения ребенка:
               </div>
               <div class="ml-3">
-                {{ babyBirthdayCalc }}
+                {{ telegramUser?.data?.birthday_telegram}}
               </div>
             </h4>
           </v-col>
         </v-row>
-        <v-row class="justify-center d-flex" v-if="location !== null">
-          <v-col cols="11" md="5" class="d-flex" @click="dialogLocation = true">
-            <h4 class="d-inline-flex small-profile">
-              <svg-icon type="mdi" :path="noteEdit" class="mr-3" size="22px" style="cursor: pointer"></svg-icon>
-              <div class="profile-bold">
-                Ваше место жительства:
-              </div>
-              <div class="ml-3">
-                {{ locationCalc }}
-              </div>
-            </h4>
-          </v-col>
-        </v-row>
-        <v-row class="justify-center d-flex" v-if="location === null">
-          <v-col cols="11" md="5" class="d-flex-column justify-center mx-auto">
-            <h4 class="small-profile">
-              <div>
-                Прошу ввести место жительства
-              </div>
-            </h4>
-            <div class="mx-auto d-flex justify-center">
-              <button class="btn btn-green-tip  btn-block mx-auto" @click="dialogLocation = true">
-                Ввести МЖ
-              </button>
-            </div>
-          </v-col>
-        </v-row>
-        <div v-if="currentMonth <=12">
+         <div v-if="currentMonth <=12">
           <v-row class="justify-center d-flex">
             <v-col cols="11" md="5" class="d-flex">
               <h4 class="d-inline-flex small-profile">
@@ -327,6 +300,33 @@
           <Form @submit="botRegisterName" :validation-schema="schemaName">
             <div class="form-group">
               <label for="realName"><p>Введите ваши имя и фамилию</p></label>
+              <Field name="realName" type="text" class="form-control"/>
+              <ErrorMessage name="realName" class="error-feedback"
+                            style="color: #b93151; font-size: 12px; font-style: italic;"/>
+            </div>
+            <div class="form-group text-center mt-4">
+              <button class="btn btn-pay btn-block" :disabled="loading"
+                      style=" background-color: #156434; color: whitesmoke">
+                            <span
+                              v-show="loading"
+                              class="spinner-border spinner-border-sm"
+                            ></span>
+                ввести
+              </button>
+            </div>
+          </Form>
+        </v-card-text>
+      </v-card>
+    </v-dialog>
+    <v-dialog
+      v-model="dialogUserName"
+      width="auto"
+    >
+      <v-card>
+        <v-card-text class="d-flex justify-center text-center">
+          <Form @submit="botRegisterUserName" :validation-schema="schemaName">
+            <div class="form-group">
+              <label for="realName"><p>Введите ваш Username</p></label>
               <Field name="realName" type="text" class="form-control"/>
               <ErrorMessage name="realName" class="error-feedback"
                             style="color: #b93151; font-size: 12px; font-style: italic;"/>
@@ -727,6 +727,33 @@ export default {
         }
       )
     },
+    botRegisterUserName (user) {
+      // console.log(user)
+      const data = {
+        username: user.realName,
+        email: this.currentUser.email
+      }
+      this.$store.dispatch('auth/botRegisterUserName', data).then(
+        (res) => {
+          console.log(res)
+          this.message = res
+          this.dialogUserName = !this.dialogUserName
+          this.loading = false
+          this.messageReturn = res
+          true.renderAll++
+          window.location.reload()
+        },
+        (error) => {
+          this.message =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString()
+          this.successful = false
+        }
+      )
+    },
     botRegisterName (user) {
       // console.log(user)
       const data = {
@@ -864,6 +891,7 @@ export default {
       schemaWeek,
       schemaWeight,
       schemaGrowth,
+      dialogUserName: false,
       genders: null,
       nameUser: null,
       babyName: null,
@@ -892,10 +920,12 @@ export default {
       path: mdiAccountEdit,
       accountDetails: mdiAccountDetails,
       noteEdit: mdiNoteEdit,
+      renderAll: 0,
       schemaName,
       schemaBabyName,
       schemaBirthday,
       schemaLocation
+
     }
   },
   computed: {
@@ -904,6 +934,9 @@ export default {
     },
     telegramUser () {
       return this.$store.state.auth.telegramUser
+    },
+    userTableNewDate () {
+      return this.$store.state.auth.userTableNew
     },
     currentMonth () {
       return this.$store.state.auth.currentMonthNew

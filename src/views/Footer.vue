@@ -55,7 +55,7 @@
                 md="6"
                 class="d-flex justify-center text-center reset-link"
               >
-                <router-link to="/#" class="">
+                <router-link to="/terms" class="">
                   Пользовательское соглашение
                 </router-link>
               </v-col>
@@ -65,7 +65,7 @@
                 md="6"
                 class="d-flex justify-center text-center reset-link"
               >
-                <router-link to="/#" class="">
+                <router-link to="/privacy" class="">
                   Политика конфидициальности
                 </router-link>
               </v-col>
@@ -89,7 +89,9 @@
 export default {
   name: 'v-Footer',
   async created () {
-    await this.getDataFromUserTable(this.currentUser.email)
+    if (this?.currentUser?.email) {
+      await this.getDataFromUserTable(this.currentUser.email)
+    }
   },
   computed: {
     currentUser () {

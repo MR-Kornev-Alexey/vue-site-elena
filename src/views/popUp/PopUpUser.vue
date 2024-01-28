@@ -10,7 +10,17 @@
     >
       <transition name="scale">
         <div class="vuexplosive-modal-container" v-if="active">
-          <div class="vuexplosive-modal-inner ">
+          <div class="vuexplosive-modal-inner-block" v-if="!showTable">
+            <img
+              :src="require('@/assets/img/giphy.gif')"
+               height="400" alt="pic" width="400"
+            >
+            <p style="color: white; font-size: 40px">
+              Загрузка
+            </p>
+          </div>
+<!--          ==================================================-->
+          <div class="vuexplosive-modal-inner " v-if="showTable">
             <div>
               <svg-icon type="mdi" :path="path6" :size="44" style="color: white" @click="modalToggle"></svg-icon>
             </div>
@@ -26,17 +36,31 @@
               </h4>
               <div v-for="(item,key) in courses" :key="key">
                 <div class="d-inline-flex justify-center" style="width: 96%">
-                  <div class="size-20-left" :class="[colorLight(key), cursorOpen(item.open) ]"
+                  <div class="size-20-left"  :class="[colorLight(key), cursorOpen(item.open) ]"
                        @click="openNextWindow(item.index,item.open)">
                     {{ item.title }}
                   </div>
-                  <div class="size-20" :class="colorLight(key)">
-                    <span :class="changeClass(item.index)">
+                  <div class="size-20" :class="[colorLight(key), changeClass(item.index)]">
+                    <span >
                          {{ checkAccess(item.index) }}
+<!--                      {{ item.open }}-->
                     </span>
                   </div>
                   <div class="size-20" :class="colorLight(key)" style="cursor: pointer">
                     <svg-icon type="mdi" :path="edit" :size="20" @click="changeAccess(item.index)"></svg-icon>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="d-inline-flex justify-center colorLight" style="width: 96%" @click="changeTimes()">
+                  <div class="size-20-left" style="border-top: 2px solid #113a70;cursor: pointer;" >
+                   Смена количества отправок
+                  </div>
+                  <div class="size-20" style="border-top: 2px solid #113a70">
+                    {{ intensiveDataUser?.times_for_3 }}
+                  </div>
+                  <div class="size-20"  style="cursor: pointer; border-top: 2px solid #113a70" >
+                    <svg-icon type="mdi" :path="edit" :size="20" ></svg-icon>
                   </div>
                 </div>
               </div>
@@ -81,6 +105,7 @@
               </div>
               <div>
                 {{ newDatUser }}<br><br>
+                   Данные из рассылки ДЗ <br><br>
                 {{ intensiveDataUser }}
               </div>
               <transition name="fade">
@@ -323,6 +348,7 @@ export default {
   data: function () {
     return {
       correctWeek: null,
+      showTable: false,
       selectedWeb: [],
       active: false,
       show: false,
@@ -411,27 +437,42 @@ export default {
         {
           title: 'Рассылка ДЗ',
           index: 'assess_homeworks',
-          open: true
+          open: false
         },
         {
           title: 'Вебинары по развитию',
           index: 'access_webinars',
-          open: true
+          open: false
         },
         {
           title: 'Курс по эмоциям',
           index: 'access_emo',
-          open: true
+          open: false
+        },
+        {
+          title: 'Курс по эмоциям 3.0',
+          index: 'access_emo_3',
+          open: false
         },
         {
           title: 'Курс по речевому развитию',
           index: 'access_speak',
-          open: true
+          open: false
         },
         {
           title: 'Участник интенсива',
           index: 'access_intensive',
-          open: true
+          open: false
+        },
+        {
+          title: 'Растим Звезду 1-0',
+          index: 'access_intensive_1_0',
+          open: false
+        },
+        {
+          title: 'Растим Звезду 3-0',
+          index: 'access_intensive_3_0',
+          open: false
         }
       ]
     }
@@ -529,6 +570,27 @@ export default {
         mail: this.userMail
       }
       this.$store.dispatch('auth/addEndOfSendHW', data).then(
+        (res) => {
+          this.intensiveDataUser = res
+        },
+        (error) => {
+          this.loading = false
+          this.message =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString()
+        }
+      )
+    },
+    changeTimes () {
+      alert('boo')
+      const data = {
+        times: 2,
+        mail: this.userMail
+      }
+      this.$store.dispatch('auth/changeTimes', data).then(
         (res) => {
           this.intensiveDataUser = res
         },
@@ -650,6 +712,27 @@ export default {
         this.changeWeekWin = !this.changeWeekWin
       }
     },
+    openStar_3_0 () {
+      alert('4444')
+      const data = {
+        index: 'access_intensive_3_0',
+        mail: this.userMail
+      }
+      this.$store.dispatch('auth/changeWebinar', data).then(
+        (res) => {
+          this.newDatUser = res
+        },
+        (error) => {
+          this.loading = false
+          this.message =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString()
+        }
+      )
+    },
     openFirstStartWin () {
       this.webinar = this.homeworksNo = this.homeworks = this.changeWeekWin = false
       this.firstStartWindow = !this.firstStartWindow
@@ -671,15 +754,21 @@ export default {
       this.newDatUser = this.intensiveDataUser = null
       this.$store.dispatch('auth/userTelegram', mail).then(
         (res) => {
-          this.newDatUser = res
-          const newStr = res.choice_webinar.replace(/\[|\]/g, '')
-          const arr = newStr.split(',').map(Number)
-          for (let i = 0; i < arr.length; i++) {
-            if (Number(arr[i]) === 1) {
-              this.selected.push(1)
-            } else {
-              this.selected.push(0)
+          if (res) {
+            this.newDatUser = res
+            const newStr = res.choice_webinar.replace(/\[|\]/g, '')
+            const arr = newStr.split(',').map(Number)
+            for (let i = 0; i < arr.length; i++) {
+              if (Number(arr[i]) === 1) {
+                this.selected.push(1)
+              } else {
+                this.selected.push(0)
+              }
             }
+
+            // Открывать таблицу только после получения данных и заполнения selected
+            this.showTable = true
+            this.active = !this.active
           }
         },
         (error) => {
@@ -832,7 +921,13 @@ export default {
 .vuexplosive-modal-inner {
   background-color: transparent;
 }
-
+.vuexplosive-modal-inner-block {
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
 .vuexplosive-modal-close {
   font-size: 18px;
   background: none;

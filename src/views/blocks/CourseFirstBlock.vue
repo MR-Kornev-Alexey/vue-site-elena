@@ -49,7 +49,7 @@
             md="auto"
             class="d-flex justify-center"
           >
-            <a href="http://elenakorneva.ru/dream" target="_blank">
+            <a href="https://landing-dream.kornevgmbh.com/" target="_blank">
             <v-btn class="btn-pay">
               Подробнее
             </v-btn></a>

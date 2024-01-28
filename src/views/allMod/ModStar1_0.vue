@@ -4,7 +4,7 @@
       <v-row class="justify-center d-flex">
         <v-col cols="11" class="d-flex justify-center">
           <h4 class="title-user">
-           Растим Звезду 3.0
+           Растим Звезду 1.0
           </h4>
         </v-col>
       </v-row>
@@ -205,9 +205,9 @@ export default {
       this.nameUser = data.name
       this.$refs.SendOneComponent.clearAll()
     },
-    getStar3DataFromTelegram (user) {
+    getStar1DataFromTelegram (user) {
       this.loading = true
-      this.$store.dispatch('auth/UsersStar3Telegram', user).then(
+      this.$store.dispatch('auth/UsersStar1Telegram', user).then(
         (res) => {
           this.allUserStar = res
         },
@@ -240,8 +240,7 @@ export default {
     }
   },
   mounted () {
-    this.getStar3DataFromTelegram(this.currentUser.email)
-    // this.allUserStar = this.$store.state.auth.allUsers.filter(item => item.access_intensive_3_0 === true)
+    this.getStar1DataFromTelegram(this.currentUser.email)
     if (!this.currentUser) {
       this.$router.push('/login')
     }

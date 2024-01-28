@@ -42,7 +42,7 @@
             md="6"
             class="d-flex justify-center"
           >
-            <a href="http://elenakorneva.ru/vimit-main-page" target="_blank">
+            <a href="https://t.me/HelenEventBot?start=start" target="_blank">
               <v-btn class="btn-pay">
                 Подробнее
               </v-btn></a>

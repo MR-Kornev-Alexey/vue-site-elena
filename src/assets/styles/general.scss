@@ -31,6 +31,7 @@ body {
   .v-main {
     background-color: #f3f9ff;
     color: #2c1403 !important;
+    padding-bottom: 120px!important;
   }
   .router-link {
     color: #2F3550;
@@ -49,6 +50,7 @@ body {
       color: whitesmoke;
     }
   }
+
 
   .router-link-active {
     text-decoration: none;
@@ -83,7 +85,11 @@ body {
     height: 33px;
     width: 33px;
   }
-
+.tip-login{
+  font-size: 10px;
+  color: #03622c;
+  margin-bottom: 2px;
+}
   .btn-green {
     width: 240px;
     background-color: #156434;
@@ -384,6 +390,7 @@ body {
     padding: 6px;
     width: 100%;
   }
+
 
   .bottom-toolbar {
     position: fixed;
@@ -1344,7 +1351,10 @@ body {
     text-transform: uppercase;
     font-weight: 500;
   }
-
+  .block-terms {
+    padding: 12px;
+    margin: auto;
+  }
   @media (min-width: 1920px) {
     .text-common {
       font-weight: 500;
@@ -1670,7 +1680,7 @@ body {
     }
     .first-one {
       min-height: 780px;
-      background-size: 92%;
+      background-size: 88%;
     }
     .img-des {
       display: none;
@@ -1681,8 +1691,8 @@ body {
     .round-6 {
       width: 80px;
       height: 80px;
-      top: -8px;
-      left: 310px;
+      top: -34px;
+      left: 688px;
     }
     .front-img {
       height: 539px;
@@ -1697,6 +1707,13 @@ body {
     }
   }
   @media (max-width: 768px) {
+    .table-mod {
+      font-size: 12px !important;
+    }
+    .first-one {
+      min-height: 780px;
+      background-size: 105%;
+    }
     .carousel-wrapper {
       position: relative;
     }
@@ -1955,6 +1972,10 @@ body {
       min-height: 608px;
       background-size: 92%;
     }
+    .first-one {
+      min-height: 582px;
+      background-size: 100%;
+    }
   }
   @media (max-width: 540px) {
     .title-user {
@@ -1967,10 +1988,9 @@ body {
       min-height: 421px;
       background-size: 71%;
     }
-
     .first-one {
-      min-height: 585px;
-      background-size: 92%;
+      min-height: 484px;
+      background-size: 93%;
     }
     .front-img {
       height: 489px;
@@ -2090,6 +2110,9 @@ body {
     }
   }
   @media (max-width: 480px) {
+    .table-mod {
+      font-size: 11px !important;
+    }
     .title-user {
       font-size: 20px;
     }
@@ -2110,7 +2133,7 @@ body {
       width: 400px;
     }
     .first-one {
-      min-height: 457px;
+      min-height: 427px;
       background-size: 92%;
     }
     .front-img {
@@ -2311,7 +2334,7 @@ body {
       font-size: 16px;
     }
     .first-one {
-      min-height: 392px;
+      min-height: 370px;
       background-size: 92%;
     }
     .cards-user-course, .cards-user{
@@ -2467,8 +2490,8 @@ body {
       width: 326px;
     }
     .first-one {
-      min-height: 376px;
-      background-size: 92%;
+      min-height: 368px;
+      background-size: 97%;
     }
     .div-des {
       padding: 4px;
@@ -2640,7 +2663,7 @@ body {
       position: relative;
     }
     .first-one {
-      min-height: 343px;
+      min-height: 330px;
       background-size: 92%;
     }
     .text-common {

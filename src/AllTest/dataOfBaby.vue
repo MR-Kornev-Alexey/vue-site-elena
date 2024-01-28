@@ -392,6 +392,7 @@ export default {
           this.growthNowBaby = res.data.data.growth_now
           this.messageReturn = res
           // this.successful = true
+          window.location.reload()
         },
         (error) => {
           this.message =

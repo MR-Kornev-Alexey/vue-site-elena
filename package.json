@@ -26,6 +26,7 @@
     "popper.js": "^1.16.1",
     "roboto-fontface": "*",
     "swiper": "^10.0.3",
+    "v-directive": "^1.0.1",
     "vee-validate": "^4.7.4",
     "vue": "^3.3.4",
     "vue-future-slider": "^1.0.5",

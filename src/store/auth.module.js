@@ -27,6 +27,10 @@ const quiz = null
 const allSpeakInfo = null
 const loggedBot = false
 const userTableNew = JSON.parse(localStorage.getItem('telegramUserTable'))
+const userStar3 = null
+const userStar1 = null
+const allUsersMotherHood = null
+const checkEmail = null
 const initialState = user
   ? {
       status: { loggedIn: true },
@@ -53,7 +57,11 @@ const initialState = user
       allSpeakInfo,
       loggedBot,
       userTableNew,
-      currentMonthNew
+      currentMonthNew,
+      allUsersMotherHood,
+      userStar3,
+      userStar1,
+      checkEmail
     }
   : {
       status: { loggedIn: false },
@@ -80,24 +88,16 @@ const initialState = user
       allSpeakInfo: null,
       loggedBot: false,
       userTableNew: null,
-      currentMonthNew: null
+      currentMonthNew: null,
+      allUsersMotherHood: null,
+      userStar3: null,
+      userStar1: null,
+      checkEmail: null
     }
 export const auth = {
   namespaced: true,
   state: initialState,
   actions: {
-    getCoursesContent ({ commit }) {
-      return AuthService.getAllCoursesContent().then(
-        data => {
-          commit('coursesContentSuccess', data)
-          return Promise.resolve(data)
-        },
-        error => {
-          commit('coursesContentFailure')
-          return Promise.reject(error)
-        }
-      )
-    },
     setCurrentMonth ({ commit }, month) {
       commit('setCurrentMonthSuccess', month)
       localStorage.setItem('currentMonthNew', JSON.stringify(month))
@@ -201,6 +201,18 @@ export const auth = {
         }
       )
     },
+    changeTimes ({ commit }, data) {
+      return AuthService.changeTimes(data).then(
+        user => {
+          commit('userIntensiveSuccess', user)
+          return Promise.resolve(user)
+        },
+        error => {
+          commit('userIntensiveFailure')
+          return Promise.reject(error)
+        }
+      )
+    },
     addEndOfSendHW ({ commit }, data) {
       return AuthService.changeEndOfSendHW(data).then(
         user => {
@@ -209,6 +221,18 @@ export const auth = {
         },
         error => {
           commit('userIntensiveFailure')
+          return Promise.reject(error)
+        }
+      )
+    },
+    star3SendingLetter ({ commit }, data) {
+      return AuthService.star3SendingLetter(data).then(
+        user => {
+          commit('sendAllUsersSuccess', user)
+          return Promise.resolve(user)
+        },
+        error => {
+          commit('sendAllUsersFailure')
           return Promise.reject(error)
         }
       )
@@ -309,8 +333,44 @@ export const auth = {
         }
       )
     },
+    getAllUsersEmo3 ({ commit }, user) {
+      return AuthService.getAllUsersEmoCourse3(user).then(
+        user => {
+          commit('allEmoSuccess', user)
+          return Promise.resolve(user)
+        },
+        error => {
+          commit('allEmoFailure')
+          return Promise.reject(error)
+        }
+      )
+    },
     getAllUsersSpeak ({ commit }, user) {
       return AuthService.getAllUsersSpeakCourse(user).then(
+        user => {
+          commit('allSpeakSuccess', user)
+          return Promise.resolve(user)
+        },
+        error => {
+          commit('allSpeakFailure')
+          return Promise.reject(error)
+        }
+      )
+    },
+    allUsersMotherHood ({ commit }, user) {
+      return AuthService.allUsersMotherHoodFromApi(user).then(
+        user => {
+          commit('allUsersMotherHoodSuccess', user)
+          return Promise.resolve(user)
+        },
+        error => {
+          commit('allUsersMotherHoodFailure')
+          return Promise.reject(error)
+        }
+      )
+    },
+    changeEmo3AccessToOneUser ({ commit }, user) {
+      return AuthService.changeAccessToOneUserEmo3(user).then(
         user => {
           commit('allSpeakSuccess', user)
           return Promise.resolve(user)
@@ -345,6 +405,18 @@ export const auth = {
         }
       )
     },
+    sendAllEmo3Users ({ commit }, user) {
+      return AuthService.sendAllEmo3UsersNoSpam(user).then(
+        user => {
+          commit('allInfoSpeakSuccess', user)
+          return Promise.resolve(user)
+        },
+        error => {
+          commit('allInfoSpeakFailure')
+          return Promise.reject(error)
+        }
+      )
+    },
     sendAllSpeaksUsers ({ commit }, user) {
       return AuthService.sendAllSpeaksUsersNoSpam(user).then(
         user => {
@@ -359,6 +431,30 @@ export const auth = {
     },
     convertUsersToListEmo ({ commit }, user) {
       return AuthService.convertUsersToEmo(user).then(
+        user => {
+          commit('allSpeakSuccess', user)
+          return Promise.resolve(user)
+        },
+        error => {
+          commit('allSpeakFailure')
+          return Promise.reject(error)
+        }
+      )
+    },
+    addUsersToListEmo3 ({ commit }, user) {
+      return AuthService.convertUsersToEmo3(user).then(
+        user => {
+          commit('allSpeakSuccess', user)
+          return Promise.resolve(user)
+        },
+        error => {
+          commit('allSpeakFailure')
+          return Promise.reject(error)
+        }
+      )
+    },
+    convertUsersToListEmo3 ({ commit }, user) {
+      return AuthService.convertUsersToEmo3(user).then(
         user => {
           commit('allSpeakSuccess', user)
           return Promise.resolve(user)
@@ -401,6 +497,30 @@ export const auth = {
         },
         error => {
           commit('allUsersFailure')
+          return Promise.reject(error)
+        }
+      )
+    },
+    UsersStar1Telegram ({ commit }, user) {
+      return AuthService.star1Telegram(user).then(
+        user => {
+          commit('star1Success', user)
+          return Promise.resolve(user)
+        },
+        error => {
+          commit('star1Failure')
+          return Promise.reject(error)
+        }
+      )
+    },
+    UsersStar3Telegram ({ commit }, user) {
+      return AuthService.star3Telegram(user).then(
+        user => {
+          commit('star3Success', user)
+          return Promise.resolve(user)
+        },
+        error => {
+          commit('star3Failure')
           return Promise.reject(error)
         }
       )
@@ -508,6 +628,19 @@ export const auth = {
         }
       )
     },
+    botRegisterUserName ({ commit }, data) {
+      return AuthService.botRegisterUserName(data).then(
+        res => {
+          console.log(res)
+          commit('loginUserTableSuccess', res.user)
+          return Promise.resolve(res)
+        },
+        error => {
+          commit('loginUserTableSuccess')
+          return Promise.reject(error)
+        }
+      )
+    },
     botRegisterName ({ commit }, data) {
       return AuthService.botRegisterName(data).then(
         res => {
@@ -560,6 +693,19 @@ export const auth = {
       AuthService.logout()
       commit('logout')
     },
+    checkEmailRegister ({ commit }, user) {
+      return AuthService.checkEmailRegisterOnApi(user).then(
+        response => {
+          commit('checkEmailSuccess')
+          // console.log(response.data)
+          return Promise.resolve(response)
+        },
+        error => {
+          commit('checkEmailFailure')
+          return Promise.reject(error)
+        }
+      )
+    },
     register ({ commit }, user) {
       return AuthService.register(user).then(
         response => {
@@ -604,6 +750,12 @@ export const auth = {
     allEmoFailure (state) {
       state.allEmo = null
     },
+    allUsersMotherHoodSuccess (state, user) {
+      state.allUsersMotherHood = user
+    },
+    allUsersMotherHoodFailure (state) {
+      state.allUsersMotherHood = null
+    },
     allSpeakSuccess (state, user) {
       state.allSpeak = user
     },
@@ -647,6 +799,18 @@ export const auth = {
       state.status.loggedIn = true
       state.user = user
     },
+    star3Success (state, user) {
+      state.userStar3 = user
+    },
+    star3Failure (state) {
+      state.userStar3 = null
+    },
+    star1Success (state, user) {
+      state.userStar1 = user
+    },
+    star1Failure (state) {
+      state.userStar1 = null
+    },
     oneUsersSuccess (state, user) {
       state.allDataOneUser = user
     },
@@ -687,11 +851,11 @@ export const auth = {
       state.status.loggedIn = false
       state.user = null
     },
-    registerBotSuccess (state) {
-      state.loggedBot = true
+    checkEmailSuccess (state) {
+      state.checkEmail = true
     },
-    registerBotFailure (state) {
-      state.loggedBot = false
+    checkEmailFailure (state) {
+      state.checkEmail = false
     },
     registerSuccess (state) {
       state.status.loggedIn = false

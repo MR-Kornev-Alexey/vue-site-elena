@@ -106,7 +106,7 @@ export default {
       )
     },
     colorLight (key) {
-      return key % 2 === 1 ? '' : 'colorLight'
+      return key % 2 === 1 ? 'colorLight' : 'colorLight'
     },
     openUser (data) {
       this.showPopUp = !this.showPopUp

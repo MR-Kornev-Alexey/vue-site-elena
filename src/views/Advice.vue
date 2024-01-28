@@ -97,7 +97,7 @@ export default {
 
 .btn-advice {
   width: 240px;
-  background-color: #4464a3;
+  background-color: #304672;
   border-radius: 16px;
   padding: 12px 24px;
 

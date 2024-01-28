@@ -1,16 +1,5 @@
 <template>
   <div id="mainAdvice" class="">
-<!--    <v-row class="justify-center text-center">-->
-
-<!--      <v-col-->
-<!--        cols="10"-->
-<!--        class="justify-center text-center first-main-advice">-->
-<!--          <div class="main-advice-round-1"/>-->
-<!--          <div class="main-advice-round-2"/>-->
-<!--          <div class="main-advice-round-3"/>-->
-<!--        <img src="">-->
-<!--      </v-col>-->
-<!--    </v-row>-->
     <v-row class="row-courses-advice d-flex justify-center text-center">
       <v-col
         cols="11" md="8"
@@ -25,7 +14,7 @@
       <v-col
         cols="11" md="8"
       >
-        <h2 class="h2-title">Стоимость консультации 6000 рублей</h2>
+        <h2 class="h2-title">Стоимость консультации 9 000 рублей</h2>
       </v-col>
 
     </v-row>

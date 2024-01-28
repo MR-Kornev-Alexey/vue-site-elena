@@ -4,80 +4,89 @@
       <v-row class="justify-center d-flex">
         <v-col cols="11" class="d-flex justify-center">
           <h4 class="title-user">
-            Регистрация в Боте "Рассылка ДЗ"
+            Данные по бесплатному курсу "Материнство..."
           </h4>
         </v-col>
       </v-row>
-      <v-row class="justify-center d-flex">
+      <v-row class="justify-center d-flex" style="border-bottom: 2px solid #44200f">
           <v-col cols="12"  class="justify-center d-flex" style="flex-direction: column">
-            <div class="d-inline-flex all-size-font justify-center" style="width: 100%; margin: auto">
-              <div class="size-5-left">
-                №№
+            <div class="d-inline-flex all-size-font justify-space-between" style="width: 100%; margin: auto">
+              <div style="padding-left: 12px">
+                Общее число участников
               </div>
-              <div class="size-20-name">
-                Имя пользователя
-              </div>
-              <div class="size-10-bd" >
-               chatId
-              </div>
-              <div class="size-20">
-                Дата регистрации
+              <div style="padding-right: 12px">
+                {{ allUsers.totalParticipants }}
               </div>
             </div>
           </v-col>
         </v-row>
-      <div v-for="(item, key) in allUsers" :key="key" >
-        <v-row class="justify-center d-flex">
-          <v-col cols="12"  class="justify-center d-flex" style="flex-direction: column">
-            <div class="d-inline-flex all-size-font justify-center" style="width: 100%; margin: auto" @click="openDialog(item.chatId)">
-              <div class="size-5-left pointer" :class="colorLight(key)">
-                {{key+1}}
-              </div>
-              <div class="size-20-name pointer" :class="colorLight(key)">
-                {{item.name }}
-              </div>
-              <div class="size-10-bd pointer" :class="colorLight(key)">
-                {{item.chatId}}
-              </div>
-              <div class="size-20 pointer" :class="colorLight(key)">
-                {{item.created}}
-              </div>
+      <v-row class="justify-center d-flex" style="border-bottom: 2px solid #44200f">
+        <v-col cols="12"  class="justify-center d-flex" style="flex-direction: column">
+          <div class="d-inline-flex all-size-font justify-space-between" style="width: 100%; margin: auto">
+            <div style="padding-left: 12px">
+              Прошли первую кнопку
             </div>
-          </v-col>
-        </v-row>
-      </div>
-      <div class="text-center">
-        <v-dialog
-          v-model="dialog"
-          width="auto"
-        >
-          <v-card>
-            <v-card-text>
-                  <div class="d-inline-flex all-size-font justify-center" style="width: 100%; margin: auto">
-                    <div class="size-20 mx-6">
-                      <h4>
-                        {{oneUser.real_name_telegram}}
-                      </h4>
-                    </div>
-                    <div class="size-20-name mx-6">
-                      <h4>
-                        {{oneUser.email_telegram}}
-                      </h4>
-                    </div>
-                    <div class="size-20 mx-6" >
-                      <h4>
-                        {{oneUser.createdAt}}
-                      </h4>
-                    </div>
-                  </div>
-             {{oneUser}}
-            </v-card-text>
-            <v-card-actions>
-              <v-btn color="#4464A3" block @click="dialog = false">Закрыть</v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
-      </div>
+            <div style="padding-right: 12px">
+              {{ allUsers.first_click}}
+            </div>
+          </div>
+        </v-col>
+      </v-row>
+      <v-row class="justify-center d-flex" style="border-bottom: 2px solid #44200f">
+        <v-col cols="12"  class="justify-center d-flex" style="flex-direction: column">
+          <div class="d-inline-flex all-size-font justify-space-between" style="width: 100%; margin: auto">
+            <div style="padding-left: 12px">
+              Прошли вторую кнопку
+            </div>
+            <div style="padding-right: 12px">
+              {{ allUsers.second_click}}
+            </div>
+          </div>
+        </v-col>
+      </v-row>
+      <v-row class="justify-center d-flex" style="border-bottom: 2px solid #44200f">
+        <v-col cols="12"  class="justify-center d-flex" style="flex-direction: column">
+          <div class="d-inline-flex all-size-font justify-space-between" style="width: 100%; margin: auto">
+            <div style="padding-left: 12px">
+              Напоминалка 3.1
+            </div>
+            <div style="padding-right: 12px">
+              {{ allUsers.first_click_24 - allUsers.second_click}}
+            </div>
+          </div>
+        </v-col>
+      </v-row>
+      <v-row class="justify-center d-flex" style="border-bottom: 2px solid #44200f">
+        <v-col cols="12"  class="justify-center d-flex" style="flex-direction: column">
+          <div class="d-inline-flex all-size-font justify-space-between" style="width: 100%; margin: auto">
+            <div style="padding-left: 12px">
+              Напоминалка 3.2
+            </div>
+            <div style="padding-right: 12px">
+              {{ allUsers.second_click_72 - allUsers.second_click}}
+            </div>
+          </div>
+        </v-col>
+      </v-row>
+      <v-row class="justify-center d-flex" >
+        <v-col cols="12"  class="justify-center d-flex" style="flex-direction: column">
+          <div class="d-inline-flex all-size-font justify-space-between" style="width: 100%; margin: auto">
+            <div style="padding-left: 12px">
+              Напоминалка 6.1
+            </div>
+            <div style="padding-right: 12px">
+              {{ allUsers.second_click - allUsers.second_click}}
+            </div>
+          </div>
+        </v-col>
+      </v-row>
+      <v-row class="justify-center d-flex" >
+        <v-col cols="12"  class="justify-center d-flex" style="flex-direction: column">
+          <v-btn class="btn-advice mt-4 mx-auto" @click="restart">
+            Перегрузить
+          </v-btn>
+        </v-col>
+      </v-row>
     </div>
   </div>
 </template>
@@ -99,7 +108,7 @@ export default {
   methods: {
     getAllDataFromHelen (user) {
       this.loading = true
-      this.$store.dispatch('auth/allUsersBotHw', user).then(
+      this.$store.dispatch('auth/allUsersMotherHood', user).then(
         (res) => {
           this.allUsers = res
         },
@@ -114,29 +123,8 @@ export default {
         }
       )
     },
-    colorLight (key) {
-      return key % 2 === 1 ? '' : 'colorLight'
-    },
-    openDialog (id) {
-      this.dialog = !this.dialog
-      const data = {
-        admin: this.currentUser.email,
-        chatId: id
-      }
-      this.$store.dispatch('auth/getOneUsersBotHw', data).then(
-        (res) => {
-          this.oneUser = res
-        },
-        (error) => {
-          this.loading = false
-          this.message =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString()
-        }
-      )
+    restart () {
+      this.getAllDataFromHelen({ user: this.currentUser.email })
     }
   },
   computed: {
@@ -148,7 +136,7 @@ export default {
     if (!this.currentUser) {
       this.$router.push('/login')
     } else {
-      this.getAllDataFromHelen(this.currentUser.email)
+      this.getAllDataFromHelen({ user: this.currentUser.email })
     }
   }
 }

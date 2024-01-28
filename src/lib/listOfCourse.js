@@ -13,11 +13,12 @@
 module.exports = [
   {
     index: 1,
-    linkToTilda: 'http://elenakorneva.ru/dev-new',
+    linkToTilda: 'https://elenakorneva.ru/new-landing-superstar',
     // linkToTilda: 'https://t.me/mrk_new_bot?start=record',
-    title: 'Интенсив <strong>"Растим звезду</strong>"',
+    title: 'Интенсив "Растим звезду"',
     greenTitle: 'Интенсив "Растим звезду"',
     subTitle: 'легендарный годовой курс<br> развития мамы и ребенка',
+    showBF: true,
     img: ['1_1.png', '1_2.png', '1_3.png'],
     description: '<div class="card-description text-left">\n' +
       '<p>ВСЕ&nbsp; ДЛЯ&nbsp; ВОЗРАСТА ВАШЕГО МАЛЫША</p>\n' +
@@ -50,18 +51,30 @@ module.exports = [
   },
   {
     index: 2,
-    linkToTilda: '/patternLanding',
-    title: 'Развиваемся с Еленой ',
-    subTitle: 'Индивидуальная консультация</br>с рекомендациями по развитию',
+    linkToTilda: 'https://t.me/HelenEventBot?start=start',
+    title: 'Вырастить гармоничного ребенка ',
+    greenTitle: 'Вырастить гармоничного ребенка',
+    subTitle: 'Бесплатный стартовый курс',
+    showBF: false,
     img: ['2_1.png', '2_2.png', '2_3.png'],
     description: '<div class="card-description text-left">\n' +
-      '<ul>\n' +
-      '<li>Ваш малыш - настоящая звезда! Но как достичь максимального раскрытия его природного потенциала и усилить таланты? Именно для этого предлагаю индивидуальную аудит - консультацию.</li>\n' +
-      '<li>Благодаря многолетнему опыту, я замечаю тонкости и намеки на определенные особенности вашего малыша. Показываю и акцентирую Ваше внимание на его сильных сторонах и потенциале.</li>\n' +
-      '<li>В течение полутора - двух часов вместе с Вами мы окунемся в удивительный мир возможностей и обсудим, какими действиями и ресурсами можно усилить и развить его гармонично и эффективно. А уже на следующий день ваша кроха вовлекается в план развития на ближайший месяц с конкретными действиями.</li>\n' +
-      '<li>Мой опыт позволяет крохе раскрыть свой потенциал и стать еще ярче!</li>\n' +
-      '<li>По итогам аудита я с удовольствием в виде бонуса подключу Вас к необходимым материалам с учетом возраста и развития ребенка</li>\n' +
-      '</ul>\n' +
+      '<ol>\n' +
+      '<li>\n' +
+      '<p><strong>Индивидуальное развитие:</strong> Создайте уникальное обучающее окружение, поддерживая потребности малыша и стимулируя его естественные таланты и интересы.</p>\n' +
+      '</li>\n' +
+      '<li>\n' +
+      '<p><strong>Раннее обучение:</strong> Используйте инновационные методики раннего обучения, включая игры, книги и музыку, для развития мозга и когнитивных навыков.</p>\n' +
+      '</li>\n' +
+      '<li>\n' +
+      '<p><strong>Творческие занятия:</strong> Развивайте творческие способности ребенка через искусство, музыку и танец, предоставляя доступ к профессиональным тренерам.</p>\n' +
+      '</li>\n' +
+      '<li>\n' +
+      '<p><strong>Семейная поддержка:</strong> Содействуйте сбалансированному семейному окружению, вовлекая семью в обучающие и воспитательные процессы.</p>\n' +
+      '</li>\n' +
+      '<li>\n' +
+      '<p><strong>Материнская поддержка:</strong> Облегчайте материнство предоставлением полезных ресурсов и организацией мероприятий для осознанной поддержки родителей.</p>\n' +
+      '</li>\n' +
+      '</ol>' +
       '</div>',
     linkIn: '#',
     linkLanding: '',
@@ -69,10 +82,11 @@ module.exports = [
   },
   {
     index: 3,
-    linkToTilda: 'http://elenakorneva.ru/emo-lending',
-    title: 'От истерики до харизмы',
-    greenTitle: 'От истерики до харизмы',
-    subTitle: 'или как управлять эмоциями<br> ребенка',
+    linkToTilda: 'https://landing-emo.kornevgmbh.com/',
+    title: 'Истерики в прошлом',
+    greenTitle: 'Как эффективно управлять эмоциями ребенка',
+    subTitle: 'Управлять эмоциями ребенка',
+    showBF: true,
     img: ['3_2.png', '3_2.png', '3_3.png'],
     description: '<div class="card-description text-left">\n' +
        '<p class="mb-2">Курс для вас, если ваш малыш:</p> ' +
@@ -101,9 +115,11 @@ module.exports = [
   },
   {
     index: 4,
-    linkToTilda: 'http://elenakorneva.ru/send_hw',
+    linkToTilda: 'https://landinghw.kornevgmbh.com/',
+    // linkToTilda: '  http://elenakorneva.ru/send_hw',
     title: 'Ежедневно развивать малыша',
     subTitle: 'с <strong>рассылкой</strong> домашних заданий<br>для Вашего возраста',
+    showBF: true,
     img: ['4_1.png', '4_2.png', '4_3.png'],
     description:
       '<div class="card-description text-left">\n' +
@@ -126,6 +142,7 @@ module.exports = [
     title: 'доРечевой 30-дневный интенсив',
     greenTitle: 'доРечевой интенсив',
     subTitle: '<div class="card-sub-title">"От звука к слову"</div>',
+    showBF: true,
     img: ['5_2.png', '5_2.png', '5_3.png'],
     description: ' <div class="card-description text-left">\n' +
        '<p class="mb-2">Этот интенсив для Вас, если:</p>' +
@@ -157,9 +174,11 @@ module.exports = [
   },
   {
     index: 6,
-    linkToTilda: 'http://elenakorneva.ru/secret',
-    title: 'Раскрыть секреты',
-    subTitle: 'какашечек и  животика в курсе <br> <strong>"Тайна погузника"</strong>',
+    linkToTilda: 'https://diaper.kornevgmbh.com/',
+    title: 'Cекреты ЖКТ крохи',
+    greenTitle: 'Проблемы животика и кишечника ребенка от 0 месяцев',
+    subTitle: 'Газики, колики, запоры, какашечки и др.</strong>',
+    showBF: true,
     img: ['6_1.png', '6_2.png', '6_2.png'],
     description:
       '<div class="card-description text-left">\n' +
@@ -169,23 +188,25 @@ module.exports = [
       '<p>Весь материал - это увлекательное путешествие по организму ребенка с его особенностями и потребностями.</p>\n' +
       '</ul> ' +
       '</div>',
-    linkIn: '#',
+    linkIn: '/diaperMystery',
     linkLanding: '',
     access: false
   },
   {
     index: 7,
-    linkToTilda: 'http://elenakorneva.ru/vimit-main-page',
+    linkToTilda: 'https://t.me/HelenEventBot?start=start',
     title: 'Разобраться в проблеме срыгивания',
     subTitle: 'с помощью <strong>тест-курса</strong>',
+    showBF: false,
     img: ['7_1.png', '7_1.png', '7_1.png'],
     description:
       '<div class="card-description text-left">\n' +
       '<ul>\n' +
-      '<li>Поняв почему происходят срыгивания именно у Вашего ребенка</li>\n' +
+      '<li>Бесплатная Web-приложение</li>\n' +
+      '<li>Поняв, почему происходят срыгивания именно у Вашего ребенка</li>\n' +
       '<li>Определившись насколько серьезна ситуация со срыгиванием у малыша, стоит ли бить тревогу и срочно бежать за помощью</li>\n' +
       '<li>Научившись применять простые, но эффективные стратегии в зависимости от состояния крохи</li>\n' +
-      '<li>Пройдя индивидуальное тестирование и получив рекомендации для&nbsp; конкретного случая</li>\n' +
+      '<li>Пройдя индивидуальное тестирование и получив рекомендации для конкретного случая</li>\n' +
       '</ul>' +
        '</div>',
     linkIn: '#',
@@ -194,8 +215,10 @@ module.exports = [
   },
   {
     index: 8,
-    linkToTilda: 'http://elenakorneva.ru/webinars',
+    linkToTilda: 'https://landing.kornevgmbh.com/',
+    // linkToTilda: ' http://elenakorneva.ru/webinars',
     title: 'Вырастить успешную личность',
+    showBF: true,
     subTitle: 'с <strong>вебинарами</strong>  по гармоничному<br>  развитиюмалышей от 0 до 24 мес. ',
     img: ['8_1.png', '8_2.png', '8_3.png'],
     description: '<div class="card-description text-left">\n' +
@@ -211,10 +234,12 @@ module.exports = [
   },
   {
     index: 9,
-    linkToTilda: 'http://elenakorneva.ru/dream',
+    linkToTilda: 'https://landing-dream.kornevgmbh.com/',
+    // linkToTilda: 'https://landing-dream.kornevgmbh.com/',
     title: 'Наладить сон ребенка',
     subTitle: 'научив его самостоятельному<br> засыпанию с помощью <strong>Чат-бота по сну</strong>',
     img: ['9_2.png', '9_2.png', '9_3.png'],
+    showBF: true,
     description:
       '<div class="card-description text-left">\n' +
       '<ul>\n' +
