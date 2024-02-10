@@ -153,9 +153,19 @@ class AuthService {
       })
   }
 
-  changeTimes (user) {
+  // changeTimes (user) {
+  //   return axios
+  //     .post(API_URL + 'changeTimes', {
+  //       user: user
+  //     })
+  //     .then(response => {
+  //       return response.data
+  //     })
+  // }
+
+  openAccessEmo30 (user) {
     return axios
-      .post(API_URL + 'changeTimes', {
+      .post(API_URL + 'openAccessEmo30', {
         user: user
       })
       .then(response => {

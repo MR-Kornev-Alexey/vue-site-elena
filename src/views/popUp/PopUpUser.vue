@@ -52,12 +52,12 @@
                 </div>
               </div>
               <div>
-                <div class="d-inline-flex justify-center colorLight" style="width: 96%" @click="changeTimes()">
-                  <div class="size-20-left" style="border-top: 2px solid #113a70;cursor: pointer;" >
-                   Смена количества отправок
+                <div class="d-inline-flex justify-center colorLight" style="width: 96%" @click="changeAccess30(newDatUser.chatId)">
+                  <div class="size-20-left" style="border-top: 2px solid #113a70;cursor: pointer;" :class="changeClass('access_emo_3')">
+                     Включить в эмоции 3.0
                   </div>
-                  <div class="size-20" style="border-top: 2px solid #113a70">
-                    {{ intensiveDataUser?.times_for_3 }}
+                  <div class="size-20" style="border-top: 2px solid #113a70" :class="changeClass('access_emo_3')">
+                    {{checkAccessEmo3_0('access_emo_3') }}
                   </div>
                   <div class="size-20"  style="cursor: pointer; border-top: 2px solid #113a70" >
                     <svg-icon type="mdi" :path="edit" :size="20" ></svg-icon>
@@ -584,15 +584,14 @@ export default {
         }
       )
     },
-    changeTimes () {
-      alert('boo')
+    changeAccess30 (chatId) {
+      // alert(chatId)
       const data = {
-        times: 2,
-        mail: this.userMail
+        chatId: chatId
       }
-      this.$store.dispatch('auth/changeTimes', data).then(
+      this.$store.dispatch('auth/openAccessEmo30', data).then(
         (res) => {
-          this.intensiveDataUser = res
+          // this.intensiveDataUser = res
         },
         (error) => {
           this.loading = false
@@ -698,6 +697,13 @@ export default {
     },
     modalToggle () {
       this.active = !this.active
+    },
+    checkAccessEmo3_0 (index) {
+      if (this.newDatUser[index]) {
+        return 'Открыто'
+      } else {
+        return 'Закрыто'
+      }
     },
     checkAccess (index) {
       if (this.newDatUser[index]) {

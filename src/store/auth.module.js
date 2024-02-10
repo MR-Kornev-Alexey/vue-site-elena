@@ -201,14 +201,14 @@ export const auth = {
         }
       )
     },
-    changeTimes ({ commit }, data) {
-      return AuthService.changeTimes(data).then(
+    openAccessEmo30 ({ commit }, data) {
+      return AuthService.openAccessEmo30(data).then(
         user => {
-          commit('userIntensiveSuccess', user)
+          commit('allUsersSuccess', user)
           return Promise.resolve(user)
         },
         error => {
-          commit('userIntensiveFailure')
+          commit('allUsersFailure')
           return Promise.reject(error)
         }
       )

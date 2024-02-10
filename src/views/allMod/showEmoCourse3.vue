@@ -8,22 +8,6 @@
           </h4>
        </v-col>
       </v-row>
-      <v-row class="justify-center d-flex">
-        <v-col cols="11" class="d-flex justify-center flex-column text-center" >
-      <v-btn
-        class="btn-dream-back  mx-auto" @click="convertUsersToList()"
-      >Конвертировать для рассылки
-      </v-btn>
-        </v-col>
-      </v-row>
-      <v-row class="justify-center d-flex">
-        <v-col cols="11" class="d-flex justify-center flex-column text-center" >
-          <v-btn
-            class="btn-dream-back  mx-auto" @click="addUsersToList()"
-          >Добавить нового участника
-          </v-btn>
-        </v-col>
-      </v-row>
       <v-row justify="center">
       <v-col cols="auto">
           <v-dialog
@@ -204,23 +188,7 @@ export default {
         )
       }
     },
-    addUsersToList () {
-      this.loading = true
-      this.$store.dispatch('auth/addUsersToListEmo3', this.currentUser).then(
-        (res) => {
-          this.allEmoUsers = res
-        },
-        (error) => {
-          this.loading = false
-          this.message =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString()
-        }
-      )
-    },
+
     convertUsersToList () {
       this.loading = true
       this.$store.dispatch('auth/convertUsersToListEmo3', this.currentUser).then(
