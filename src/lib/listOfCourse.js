@@ -139,7 +139,7 @@ module.exports = [
   {
     index: 10,
     linkToTilda: '/speakLandingSpecial',
-    title: 'доРечевой 30-дневный интенсив',
+    title: 'доРечевой 6 - недельный интенсив',
     greenTitle: 'доРечевой интенсив',
     subTitle: '<div class="card-sub-title">"От звука к слову"</div>',
     showBF: true,

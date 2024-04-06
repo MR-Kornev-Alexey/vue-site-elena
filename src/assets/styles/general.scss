@@ -1386,6 +1386,13 @@ body {
     }
   }
 
+
+  .element-webinar-lending {
+    font-size: 18px;
+    text-align: left;
+    padding: 0 8px;
+  }
+
   @media (max-width: 1600px) {
     .text-common {
       font-weight: 500;
@@ -1438,6 +1445,7 @@ body {
       background-size: 100%;
     }
   }
+
   @media (max-width: 1280px) {
     .text-common {
       font-weight: 500;
@@ -1542,6 +1550,9 @@ body {
     }
   }
   @media (max-width: 1024px) {
+    .element-webinar-lending {
+      font-size: 16px;
+    }
     .text-common {
       font-weight: 500;
       color: #2c1403;
@@ -1671,6 +1682,9 @@ body {
   }
 
   @media screen and (max-width: 912px) {
+    .element-webinar-lending {
+      font-size: 15px;
+    }
     .first-about-lending {
       min-height: 989px;
       background-size: 99%;
@@ -1707,6 +1721,9 @@ body {
     }
   }
   @media (max-width: 768px) {
+    .element-webinar-lending {
+      font-size: 14px;
+    }
     .table-mod {
       font-size: 12px !important;
     }
@@ -1976,6 +1993,9 @@ body {
       min-height: 582px;
       background-size: 100%;
     }
+    .element-webinar-lending {
+      font-size: 13px;
+    }
   }
   @media (max-width: 540px) {
     .title-user {
@@ -2110,6 +2130,10 @@ body {
     }
   }
   @media (max-width: 480px) {
+    .element-webinar-lending {
+      font-size: 14px;
+      padding: 0 12px;
+    }
     .table-mod {
       font-size: 11px !important;
     }
@@ -2330,6 +2354,10 @@ body {
     }
   }
   @media (max-width: 414px) {
+    .element-webinar-lending {
+      font-size: 14px;
+      padding: 0 10px;
+    }
     .title-user {
       font-size: 16px;
     }
@@ -2473,6 +2501,10 @@ body {
     }
   }
   @media (max-width: 393px) {
+    .element-webinar-lending {
+      font-size: 13px;
+      padding: 0 12px;
+    }
     .profile-bold {
       font-size: 15px;
     }
@@ -2637,6 +2669,10 @@ body {
     }
   }
   @media (max-width: 375px) {
+    .element-webinar-lending {
+      font-size: 13px;
+      padding: 0 12px;
+    }
     .title-user {
       font-size: 12px;
     }
@@ -2679,6 +2715,10 @@ body {
     }
   }
   @media (max-width: 320px) {
+    .element-webinar-lending {
+      font-size: 12px;
+      padding: 0 6px;
+    }
     .title-user {
       font-size: 16px;
     }

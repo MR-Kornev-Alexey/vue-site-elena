@@ -89,7 +89,7 @@
         md="6"
         class="d-flex-column justify-center text-center"
       >
-        <h2 class="h2-lending">С какими проблемами поможет интенсив?</h2>
+        <h2 class="h2-lending">С какими проблемами поможет интенсив:</h2>
       </v-col>
     </v-row>
     <v-row>
@@ -154,6 +154,34 @@
 
       <v-col cols="12" md="5" class="d-flex-column align-self-center justify-center ">
         <img :src="require('@/assets/img/landing/phone-spk.png')" alt="phone" class="img-phone">
+      </v-col>
+    </v-row>
+    <v-row class="d-flex justify-center text-center " style="margin: 0; padding: 0">
+      <v-col
+        cols="12"
+        class="d-flex justify-center text-center align-items-center"
+      >
+        <h2 class="h2-lending">"Живые" вебинары</h2>
+      </v-col>
+    </v-row>
+    <v-row class="d-flex justify-center text-center " style="margin: 0; padding: 0">
+      <v-col
+        cols="12"
+        md="8"
+        class="d-flex justify-center align-items-start flex-column"
+      >
+        <div class="">
+          <p class="element-webinar-lending"><strong>Между экранами и речью.</strong><br> Как минимизировать вред мультиков и смартфонов, сделав их помощниками в разитии речи</p>
+        </div>
+        <div class="my-4">
+          <p class="element-webinar-lending"><strong>Если малыш с особенностями</strong><br> Эффективные алгоритмы работы при ЗРР и других проблемах здоровья и развития</p>
+        </div>
+        <div class="my-4">
+          <p class="element-webinar-lending"><strong>Как разговорить молчуна и стимулировать "Капризулю"</strong><br>Запускаем речь без криков, стрессов и истерик</p>
+        </div>
+        <div class="">
+          <p class="element-webinar-lending"><strong>Многоязычная семья с пеленок </strong><br>Когда начинать учить второй язык и  как действовоть в многоязычной среде</p>
+        </div>
       </v-col>
     </v-row>
     <aboutLanding/>
